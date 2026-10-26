@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel Indicadores Brasil</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Serif:wght@500;600&display=swap">
+<style>
+/* Layout: cabeçalho, abas por pilar, grade de cartões (valor, gráfico de evolução, fonte). */
+:root {
+  --bg: #f5f7f8; --surface: #ffffff; --fg: #14232b; --muted: #55666f; --line: #d5dde1;
+  --accent: #0b6b5d; --accent-soft: #e0f0ed;
+  --warn: #7a5200; --warn-bg: #fff1d1; --info: #1c4f7a; --info-bg: #e3eefa;
+  --font-display: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1a20; --surface: #16252d; --fg: #e6eef1; --muted: #9fb2bb; --line: #2b3e48;
+    --accent: #5fc9b6; --accent-soft: #17383a;
+    --warn: #f2d68a; --warn-bg: #3a2f10; --info: #9cc7f0; --info-bg: #17304a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1a20; --surface: #16252d; --fg: #e6eef1; --muted: #9fb2bb; --line: #2b3e48;
+  --accent: #5fc9b6; --accent-soft: #17383a;
+  --warn: #f2d68a; --warn-bg: #3a2f10; --info: #9cc7f0; --info-bg: #17304a;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 15px; line-height: 1.5;
+  padding-block: 28px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+header { display: flex; flex-direction: column; gap: 8px; }
+.eyebrow { font-family: var(--font-data); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(26px, 5vw, 38px); line-height: 1.15; margin: 0; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 68ch; margin: 0; }
+.barra { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; }
+.gerado { font-family: var(--font-data); font-size: 12.5px; color: var(--muted); }
+.janela { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.seg button { font: inherit; font-size: 13px; background: var(--surface); color: var(--fg); border: 0; padding: 6px 12px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--surface); }
+button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+nav.abas { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); }
+nav.abas button { font: inherit; font-weight: 500; background: none; color: var(--muted); border: 0; border-bottom: 3px solid transparent; padding: 10px 14px; cursor: pointer; margin-bottom: -1px; }
+nav.abas button[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--accent); }
+.grade { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 430px), 1fr)); gap: 16px; align-items: start; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.cab { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 8px; }
+h3 { margin: 0; font-size: 15px; font-weight: 600; }
+.badge { font-size: 11.5px; font-weight: 600; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+.badge.ok { background: var(--accent-soft); color: var(--accent); }
+.badge.warn { background: var(--warn-bg); color: var(--warn); }
+.badge.info { background: var(--info-bg); color: var(--info); }
+.linha-valor { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
+.valor { font-family: var(--font-data); font-size: 32px; font-weight: 500; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.valor small { font-size: 14px; color: var(--muted); }
+.ref { font-family: var(--font-data); font-size: 12.5px; color: var(--muted); }
+.delta { display: flex; align-items: center; gap: 8px; font-family: var(--font-data); font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.graf { position: relative; min-height: 200px; }
+.graf svg { display: block; width: 100%; height: auto; overflow: visible; }
+.graf .grade-y { stroke: var(--line); stroke-width: 1; }
+.graf .eixo { fill: var(--muted); font-family: var(--font-data); font-size: 11px; }
+.graf .linha { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.graf .ponto { fill: var(--surface); stroke: var(--accent); stroke-width: 2; }
+.graf .ultimo { fill: var(--accent); stroke: var(--surface); stroke-width: 2; }
+.graf .rotulo { fill: var(--fg); font-family: var(--font-data); font-size: 12px; font-weight: 500; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.graf .guia { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.dica { position: absolute; pointer-events: none; background: var(--fg); color: var(--bg); font-family: var(--font-data); font-size: 12px; padding: 4px 8px; border-radius: 4px; white-space: nowrap; transform: translate(-50%, -100%); z-index: 2; }
+.sem-grafico { border: 1px dashed var(--line); border-radius: 6px; padding: 14px; color: var(--muted); font-size: 13px; }
+details { font-size: 13px; }
+summary { cursor: pointer; color: var(--accent); font-weight: 500; }
+.tabela-rolagem { overflow-x: auto; max-height: 220px; overflow-y: auto; margin-top: 6px; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { text-align: left; padding: 5px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); position: sticky; top: 0; background: var(--surface); }
+td.num { font-family: var(--font-data); font-variant-numeric: tabular-nums; text-align: right; }
+.meta { border-top: 1px solid var(--line); padding-top: 10px; margin-top: auto; display: flex; flex-direction: column; gap: 4px; font-size: 12.5px; color: var(--muted); }
+.meta a, .fontes a, .pend a { color: var(--accent); overflow-wrap: anywhere; }
+.seal { display: inline-flex; align-self: flex-start; background: var(--accent-soft); color: var(--accent); font-weight: 600; font-size: 12px; padding: 2px 8px; border-radius: 4px; }
+.aviso { background: var(--warn-bg); color: var(--warn); border-radius: 6px; padding: 8px 10px; }
+.pend, .fontes { display: flex; flex-direction: column; gap: 10px; }
+.pend { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+.pend h2, .fontes h2 { margin: 0; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.pend ul, .notas { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+.legenda { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; color: var(--muted); }
+footer { font-size: 12.5px; color: var(--muted); max-width: 80ch; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Brasil · visão nacional</span>
+    <h1>Painel Indicadores Brasil</h1>
+    <p class="lede">Indicadores oficiais em evolução ao longo do tempo. Cada número mostra o órgão que o produz, a tabela original, a data da coleta e se já foi conferido na fonte primária.</p>
+    <div class="barra">
+      <span class="gerado" id="gerado"></span>
+      <span class="janela">Período dos gráficos
+        <span class="seg" id="janela" role="group" aria-label="Período dos gráficos">
+          <button type="button" data-anos="5" aria-pressed="false">5 anos</button>
+          <button type="button" data-anos="10" aria-pressed="true">10 anos</button>
+          <button type="button" data-anos="0" aria-pressed="false">Tudo</button>
+        </span>
+      </span>
+    </div>
+  </header>
+
+  <nav class="abas" id="abas" role="tablist" aria-label="Pilares"></nav>
+  <main id="conteudo" role="tabpanel" aria-live="polite"></main>
+
+  <footer>
+    As setas indicam apenas a direção da mudança em relação ao período anterior, sem juízo de valor. Valores marcados como "Conferir na fonte primária" foram lidos em reportagens sobre a publicação oficial e devem ser checados no original antes de uso em decisões.
+  </footer>
+</div>
+
+<script src="data/data.js"></script>
+<script>
+(function () {
+  'use strict';
+  var D = window.PAINEL;
+  var conteudo = document.getElementById('conteudo');
+  if (!D || !D.indicadores) {
+    conteudo.textContent = 'Não foi possível carregar os dados (arquivo data/data.js).';
+    return;
+  }
+  var MESES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+  var STATUS = {
+    api: { t: 'Coletado da fonte oficial', c: 'ok' },
+    manual_oficial: { t: 'Registrado da fonte oficial', c: 'ok' },
+    manual_conferir: { t: 'Conferir na fonte primária', c: 'warn' },
+    inicial: { t: 'Valor inicial, atualiza na próxima coleta', c: 'info' },
+    erro: { t: 'Falha na última coleta', c: 'warn' }
+  };
+  var estado = { aba: 'economia', anos: 10 };
+  var nfCache = {};
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function nf(c) {
+    if (!nfCache[c]) nfCache[c] = new Intl.NumberFormat('pt-BR', { minimumFractionDigits: c, maximumFractionDigits: c });
+    return nfCache[c];
+  }
+  function fmt(v, ind, casas) {
+    var c = casas == null ? (ind.casas || 0) : casas;
+    return (ind.prefixo || '') + nf(c).format(v) + (ind.sufixo || '');
+  }
+  function parse(p) {
+    var m;
+    if ((m = /^(\d{4})-T([1-4])$/.exec(p))) return { x: +m[1] + (+m[2] - 1) / 4, rot: m[2] + 'º tri/' + m[1] };
+    if ((m = /^(\d{4})-(\d{2})$/.exec(p))) return { x: +m[1] + (+m[2] - 1) / 12, rot: MESES[+m[2] - 1] + '/' + m[1] };
+    return { x: +p, rot: String(p) };
+  }
+  function pontos(ind) {
+    return (ind.serie || []).map(function (s) {
+      var q = parse(s[0]);
+      return { p: s[0], x: q.x, rot: q.rot, v: s[1] };
+    }).sort(function (a, b) { return a.x - b.x; });
+  }
+  function janela(pts) {
+    if (!estado.anos || pts.length < 2) return pts;
+    var corte = pts[pts.length - 1].x - estado.anos;
+    var f = pts.filter(function (p) { return p.x >= corte - 1e-9; });
+    return f.length >= 2 ? f : pts;
+  }
+  function dataBR(iso) {
+    if (!iso) return '—';
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso);
+    return m ? m[3] + '/' + m[2] + '/' + m[1] : iso;
+  }
+  function niceStep(raw) {
+    var p = Math.pow(10, Math.floor(Math.log10(raw)));
+    var f = raw / p;
+    return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10) * p;
+  }
+
+  /* ---------- gráfico de linha em SVG ---------- */
+  function desenhar(el, ind, pts) {
+    var W = Math.max(260, el.clientWidth || 360), H = 200;
+    var M = { t: 16, r: 22, b: 26, l: 48 };
+    var xs = pts.map(function (p) { return p.x; }), vs = pts.map(function (p) { return p.v; });
+    var x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs);
+    if (x1 === x0) { x0 -= 0.5; x1 += 0.5; }
+    var v0 = Math.min.apply(null, vs), v1 = Math.max.apply(null, vs);
+    if (v1 === v0) { v0 -= 1; v1 += 1; }
+    var step = niceStep((v1 - v0) / 4);
+    var y0 = Math.floor(v0 / step + 1e-9) * step, y1 = Math.ceil(v1 / step - 1e-9) * step;
+    var casasY = Math.max(ind.casas || 0, step >= 1 ? 0 : Math.ceil(-Math.log10(step) - 1e-9));
+    function X(x) { return M.l + (x - x0) / (x1 - x0) * (W - M.l - M.r); }
+    function Y(v) { return H - M.b - (v - y0) / (y1 - y0) * (H - M.t - M.b); }
+
+    var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Gráfico de ' + esc(ind.nome) + ': de ' +
+      esc(pts[0].rot) + ' (' + esc(fmt(pts[0].v, ind)) + ') a ' + esc(pts[pts.length - 1].rot) + ' (' + esc(fmt(pts[pts.length - 1].v, ind)) + ')">';
+    for (var t = y0; t <= y1 + step / 2; t += step) {
+      var tv = Math.round(t / step) * step;
+      s += '<line class="grade-y" x1="' + M.l + '" x2="' + (W - M.r) + '" y1="' + Y(tv).toFixed(1) + '" y2="' + Y(tv).toFixed(1) + '"/>';
+      s += '<text class="eixo" x="' + (M.l - 8) + '" y="' + (Y(tv) + 4).toFixed(1) + '" text-anchor="end">' + nf(casasY).format(tv) + '</text>';
+    }
+    var span = x1 - x0;
+    if (span >= 3) {
+      var ys = niceStep(span / 5);
+      for (var xt = Math.ceil(x0 / ys - 1e-9) * ys; xt <= x1 + 1e-9; xt += ys) {
+        s += '<text class="eixo" x="' + X(xt).toFixed(1) + '" y="' + (H - 6) + '" text-anchor="middle">' + Math.round(xt) + '</text>';
+      }
+    } else {
+      s += '<text class="eixo" x="' + X(pts[0].x).toFixed(1) + '" y="' + (H - 6) + '" text-anchor="start">' + esc(pts[0].rot) + '</text>';
+      s += '<text class="eixo" x="' + X(pts[pts.length - 1].x).toFixed(1) + '" y="' + (H - 6) + '" text-anchor="end">' + esc(pts[pts.length - 1].rot) + '</text>';
+    }
+    var d = '';
+    pts.forEach(function (p, i) {
+      var px = X(p.x).toFixed(1), py = Y(p.v).toFixed(1);
+      if (i === 0) d += 'M' + px + ' ' + py;
+      else if (ind.degrau) d += ' H' + px + ' V' + py;
+      else d += ' L' + px + ' ' + py;
+    });
+    s += '<path class="linha" d="' + d + '"/>';
+    if (pts.length <= 36) {
+      pts.forEach(function (p, i) {
+        if (i < pts.length - 1) s += '<circle class="ponto" r="3" cx="' + X(p.x).toFixed(1) + '" cy="' + Y(p.v).toFixed(1) + '"/>';
+      });
+    }
+    var u = pts[pts.length - 1], ux = X(u.x), uy = Y(u.v);
+    s += '<circle class="ultimo" r="4.5" cx="' + ux.toFixed(1) + '" cy="' + uy.toFixed(1) + '"/>';
+    s += '<text class="rotulo" x="' + (ux - 8).toFixed(1) + '" y="' + (uy - 10).toFixed(1) + '" text-anchor="end">' + esc(fmt(u.v, ind)) + '</text>';
+    s += '<line class="guia" id="g" x1="0" x2="0" y1="' + M.t + '" y2="' + (H - M.b) + '" style="display:none"/>';
+    s += '<circle class="ultimo" id="gp" r="4.5" cx="0" cy="0" style="display:none"/>';
+    s += '<rect x="' + M.l + '" y="' + M.t + '" width="' + (W - M.l - M.r) + '" height="' + (H - M.t - M.b) + '" fill="transparent" id="area"/>';
+    s += '</svg><div class="dica" style="display:none"></div>';
+    el.innerHTML = s;
+
+    var svg = el.querySelector('svg'), guia = el.querySelector('#g'), gp = el.querySelector('#gp');
+    var dica = el.querySelector('.dica'), area = el.querySelector('#area');
+    function mover(ev) {
+      var r = svg.getBoundingClientRect();
+      var px = (ev.clientX - r.left) * (W / r.width);
+      var melhor = pts[0], dist = Infinity;
+      pts.forEach(function (p) { var dd = Math.abs(X(p.x) - px); if (dd < dist) { dist = dd; melhor = p; } });
+      var cx = X(melhor.x), cy = Y(melhor.v);
+      guia.setAttribute('x1', cx); guia.setAttribute('x2', cx); guia.style.display = '';
+      gp.setAttribute('cx', cx); gp.setAttribute('cy', cy); gp.style.display = '';
+      dica.textContent = melhor.rot + ': ' + fmt(melhor.v, ind);
+      dica.style.display = '';
+      dica.style.left = (cx * r.width / W) + 'px';
+      dica.style.top = (cy * r.height / H - 10) + 'px';
+    }
+    function sair() { guia.style.display = 'none'; gp.style.display = 'none'; dica.style.display = 'none'; }
+    area.addEventListener('pointermove', mover);
+    area.addEventListener('pointerdown', mover);
+    area.addEventListener('pointerleave', sair);
+  }
+
+  /* ---------- cartões ---------- */
+  function cartao(ind) {
+    var pts = pontos(ind), st = STATUS[ind.status] || { t: 'Sem dados', c: 'info' };
+    var u = pts[pts.length - 1], a = pts.length > 1 ? pts[pts.length - 2] : null;
+    var h = '<article class="card" data-id="' + esc(ind.id) + '">';
+    h += '<div class="cab"><h3>' + esc(ind.nome) + '</h3><span class="badge ' + st.c + '">' + esc(st.t) + '</span></div>';
+    h += '<div class="linha-valor"><span class="valor">' + esc(fmt(u.v, ind)) + '</span><span class="ref">' + esc(u.rot) + ' · ' + esc(ind.unidade) + '</span></div>';
+    if (a) {
+      var seta = u.v > a.v ? 'M7 12V2M7 2L3 6M7 2l4 4' : u.v < a.v ? 'M7 2v10M7 12l-4-4M7 12l4-4' : 'M2 7h10';
+      h += '<div class="delta"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="' + seta + '" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        '<span>anterior ' + esc(fmt(a.v, ind)) + ' (' + esc(a.rot) + ')</span></div>';
+    }
+    if (pts.length >= 2) {
+      h += '<div class="graf" data-graf="' + esc(ind.id) + '"></div>';
+      if (pts.length < 6) h += '<div class="legenda">Série curta: ' + pts.length + ' pontos registrados até agora.</div>';
+    } else {
+      h += '<div class="sem-grafico">Há apenas um ponto registrado. O gráfico de evolução aparece quando houver mais períodos.</div>';
+    }
+    h += '<details><summary>Ver dados da série</summary><div class="tabela-rolagem"><table><thead><tr><th>Período</th><th>Valor</th></tr></thead><tbody>';
+    pts.slice().reverse().forEach(function (p) { h += '<tr><td>' + esc(p.rot) + '</td><td class="num">' + esc(fmt(p.v, ind)) + '</td></tr>'; });
+    h += '</tbody></table></div></details>';
+    h += '<div class="meta"><span class="seal">Fonte oficial: ' + esc(ind.fonte) + '</span>';
+    h += '<span>' + esc(ind.fonte_detalhe) + '</span>';
+    h += '<span>Periodicidade: ' + esc(ind.periodicidade) + ' · Dado coletado em ' + esc(dataBR(ind.coletadoEm)) + '</span>';
+    h += '<a href="' + esc(ind.url_fonte) + '" target="_blank" rel="noopener">Abrir a fonte original</a>';
+    if (ind.nota) h += '<span>' + esc(ind.nota) + '</span>';
+    (ind.fontesManuais || []).forEach(function (f) {
+      h += '<span>Valores lidos em: <a href="' + esc(f.link) + '" target="_blank" rel="noopener">' + esc(f.fonte) + '</a></span>';
+    });
+    if (ind.status === 'erro') h += '<span class="aviso">A última coleta automática falhou; os valores abaixo são da coleta anterior. Detalhe: ' + esc(ind.erro) + '</span>';
+    h += '</div></article>';
+    return h;
+  }
+  function pendencias(lista) {
+    if (!lista.length) return '';
+    var h = '<section class="pend"><h2>Ainda sem dados</h2><ul>';
+    lista.forEach(function (i) {
+      h += '<li><strong>' + esc(i.nome) + '</strong> (' + esc(i.fonte) + '). ' + esc(i.pendente || 'Aguardando a primeira coleta automática.') +
+        ' <a href="' + esc(i.url_fonte) + '" target="_blank" rel="noopener">Fonte</a></li>';
+    });
+    return h + '</ul></section>';
+  }
+
+  /* ---------- aba de fontes e método ---------- */
+  function abaFontes() {
+    var h = '<section class="fontes"><h2>Fontes e método</h2>';
+    h += '<div class="legenda">';
+    Object.keys(STATUS).forEach(function (k) { h += '<span><span class="badge ' + STATUS[k].c + '">' + esc(STATUS[k].t) + '</span></span>'; });
+    h += '</div>';
+    h += '<ul class="notas">' +
+      '<li><strong>Coletado da fonte oficial:</strong> um programa busca a série na API do IBGE ou do Banco Central e grava o resultado sem alterações.</li>' +
+      '<li><strong>Registrado da fonte oficial:</strong> valor digitado a partir da publicação do próprio órgão.</li>' +
+      '<li><strong>Conferir na fonte primária:</strong> valor lido em reportagem sobre a publicação oficial. Use o link da fonte para checar o original.</li>' +
+      '<li><strong>Mortes violentas intencionais:</strong> FBSP, Sinesp e DATASUS publicam números diferentes por causa de metodologias distintas. Este painel usa o Anuário do FBSP como série principal.</li>' +
+      '<li><strong>Expectativa de vida:</strong> o IBGE revisou a série após o Censo 2022. Edições antigas da tábua não são comparáveis com as atuais.</li>' +
+      '<li><strong>Mortalidade infantil:</strong> a série escolhida é a do Ministério da Saúde (SIM/SINASC); o dado mais recente costuma ser preliminar.</li>' +
+      '</ul>';
+    h += '<div class="tabela-rolagem" style="max-height:none"><table><thead><tr><th>Indicador</th><th>Pilar</th><th>Órgão</th><th>Periodicidade</th><th>Origem</th><th>Coleta</th><th>Fonte</th></tr></thead><tbody>';
+    D.indicadores.forEach(function (i) {
+      var nomePilar = (D.pilares.filter(function (p) { return p.id === i.pilar; })[0] || {}).nome || '';
+      var st = STATUS[i.status];
+      h += '<tr><td>' + esc(i.nome) + '</td><td>' + esc(nomePilar) + '</td><td>' + esc(i.fonte) + '</td><td>' + esc(i.periodicidade) +
+        '</td><td>' + esc(st ? st.t : 'Sem dados ainda') + '</td><td>' + esc(dataBR(i.coletadoEm)) + '</td><td><a href="' + esc(i.url_fonte) + '" target="_blank" rel="noopener">Abrir</a></td></tr>';
+    });
+    return h + '</tbody></table></div></section>';
+  }
+
+  /* ---------- navegação ---------- */
+  function montarAbas() {
+    var nav = document.getElementById('abas'), h = '';
+    D.pilares.concat([{ id: 'fontes', nome: 'Fontes e método' }]).forEach(function (p) {
+      h += '<button type="button" role="tab" data-aba="' + esc(p.id) + '" aria-selected="' + (p.id === estado.aba) + '">' + esc(p.nome) + '</button>';
+    });
+    nav.innerHTML = h;
+  }
+  function render() {
+    Array.prototype.forEach.call(document.querySelectorAll('#abas button'), function (b) {
+      b.setAttribute('aria-selected', String(b.getAttribute('data-aba') === estado.aba));
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('#janela button'), function (b) {
+      b.setAttribute('aria-pressed', String(+b.getAttribute('data-anos') === estado.anos));
+    });
+    if (estado.aba === 'fontes') { conteudo.innerHTML = abaFontes(); return; }
+    var daAba = D.indicadores.filter(function (i) { return i.pilar === estado.aba; });
+    var com = daAba.filter(function (i) { return (i.serie || []).length > 0; });
+    var sem = daAba.filter(function (i) { return !(i.serie || []).length; });
+    conteudo.innerHTML = '<div class="grade">' + com.map(cartao).join('') + '</div>' + pendencias(sem);
+    com.forEach(function (ind) {
+      var el = conteudo.querySelector('[data-graf="' + ind.id + '"]');
+      if (el) desenhar(el, ind, janela(pontos(ind)));
+    });
+  }
+  document.getElementById('abas').addEventListener('click', function (ev) {
+    var b = ev.target.closest('button[data-aba]');
+    if (!b) return;
+    estado.aba = b.getAttribute('data-aba');
+    try { history.replaceState(null, '', '#' + estado.aba); } catch (e) { /* ignorar */ }
+    render();
+  });
+  document.getElementById('janela').addEventListener('click', function (ev) {
+    var b = ev.target.closest('button[data-anos]');
+    if (!b) return;
+    estado.anos = +b.getAttribute('data-anos');
+    render();
+  });
+  var timer;
+  window.addEventListener('resize', function () { clearTimeout(timer); timer = setTimeout(render, 150); });
+
+  var hash = (location.hash || '').slice(1);
+  if (hash === 'fontes' || D.pilares.some(function (p) { return p.id === hash; })) estado.aba = hash;
+  else estado.aba = D.pilares[0].id;
+  var g = new Date(D.geradoEm);
+  document.getElementById('gerado').textContent = 'Dados gerados em ' + (isNaN(g) ? '—' : g.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' }));
+  montarAbas();
+  render();
+})();
+</script>
+</body>
+</html>
