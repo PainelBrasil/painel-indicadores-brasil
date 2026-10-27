@@ -1,5 +1,5 @@
 {
- "geradoEm": "2026-10-27T12:59:18Z",
+ "geradoEm": "2026-10-27T13:08:37Z",
  "pilares": [
   {
    "id": "economia",
@@ -8699,9 +8699,33 @@
    "casas": 1,
    "periodicidade": "anual",
    "fonte": "IBGE",
-   "fonte_detalhe": "PNAD Contínua Educação, SIDRA tabela 7113",
+   "fonte_detalhe": "PNAD Contínua Educação, SIDRA tabela 7113 (total, 15 anos ou mais)",
    "url_fonte": "https://sidra.ibge.gov.br/tabela/7113",
    "serie": [
+    [
+     "2016",
+     6.7
+    ],
+    [
+     "2017",
+     6.5
+    ],
+    [
+     "2018",
+     6.3
+    ],
+    [
+     "2019",
+     6.1
+    ],
+    [
+     "2022",
+     5.6
+    ],
+    [
+     "2023",
+     5.4
+    ],
     [
      "2024",
      5.3
@@ -8711,10 +8735,11 @@
      4.9
     ]
    ],
-   "status": "erro",
+   "status": "api",
    "coletadoEm": "2026-10-27",
    "origem": "api",
-   "erro": "a API não devolveu valores"
+   "nomeNaFonte": "Valor",
+   "unidadeNaFonte": "Unidade de Medida"
   },
   {
    "id": "escolarizacao",
@@ -8725,9 +8750,33 @@
    "casas": 1,
    "periodicidade": "anual",
    "fonte": "IBGE",
-   "fonte_detalhe": "PNAD Contínua, suplemento de Educação",
-   "url_fonte": "https://www.ibge.gov.br/estatisticas/sociais/educacao/17270-pnad-continua.html",
+   "fonte_detalhe": "PNAD Contínua Educação, SIDRA tabela 7138 (total, 6 a 14 anos)",
+   "url_fonte": "https://sidra.ibge.gov.br/tabela/7138",
    "serie": [
+    [
+     "2016",
+     99.2
+    ],
+    [
+     "2017",
+     99.2
+    ],
+    [
+     "2018",
+     99.3
+    ],
+    [
+     "2019",
+     99.3
+    ],
+    [
+     "2022",
+     99.4
+    ],
+    [
+     "2023",
+     99.4
+    ],
     [
      "2024",
      99.5
@@ -8737,16 +8786,11 @@
      99.5
     ]
    ],
-   "status": "manual_oficial",
+   "status": "api",
    "coletadoEm": "2026-10-27",
-   "origem": "manual",
-   "fontesManuais": [
-    {
-     "fonte": "IBGE, Painel de Indicadores (PNAD Contínua Educação), lido em 26/10/2026",
-     "link": "https://www.ibge.gov.br/indicadores",
-     "verificacao": "primaria"
-    }
-   ]
+   "origem": "api",
+   "nomeNaFonte": "Valor",
+   "unidadeNaFonte": "Unidade de Medida"
   },
   {
    "id": "pisa_matematica",
