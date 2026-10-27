@@ -510,5 +510,13 @@
   "diagnostico_sidra": [
     7113,
     7138
+  ],
+  "sondas": [
+    "https://www.ipeadata.gov.br/api/odata4/Metadados?$top=2",
+    "https://www.ipeadata.gov.br/api/odata4/Metadados?$filter=contains(SERNOME,'omic%C3%ADdios')&$select=SERCODIGO,SERNOME,PERNOME,FNTSIGLA&$top=15",
+    "https://dados.mj.gov.br/api/3/action/package_search?q=sinesp&rows=5",
+    "https://apidadosabertos.saude.gov.br/",
+    "https://download.inep.gov.br/",
+    "https://dadosabertos.tesouro.gov.br/api/3/action/package_list"
   ]
 }
