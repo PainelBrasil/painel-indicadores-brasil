@@ -351,12 +351,14 @@
       "casas": 1,
       "periodicidade": "anual",
       "fonte": "IBGE",
-      "fonte_detalhe": "PNAD Contínua Educação, SIDRA tabela 7113",
+      "fonte_detalhe": "PNAD Contínua Educação, SIDRA tabela 7113 (total, 15 anos ou mais)",
       "url_fonte": "https://sidra.ibge.gov.br/tabela/7113",
       "coleta": {
         "tipo": "sidra",
         "agregado": 7113,
-        "variavel_nome": "Taxa"
+        "variavel": 10267,
+        "classificacao": "2[6794]58[2795]",
+        "so_apisidra": true
       }
     },
     {
@@ -368,10 +370,14 @@
       "casas": 1,
       "periodicidade": "anual",
       "fonte": "IBGE",
-      "fonte_detalhe": "PNAD Contínua, suplemento de Educação",
-      "url_fonte": "https://www.ibge.gov.br/estatisticas/sociais/educacao/17270-pnad-continua.html",
+      "fonte_detalhe": "PNAD Contínua Educação, SIDRA tabela 7138 (total, 6 a 14 anos)",
+      "url_fonte": "https://sidra.ibge.gov.br/tabela/7138",
       "coleta": {
-        "tipo": "manual"
+        "tipo": "sidra",
+        "agregado": 7138,
+        "variavel": 10276,
+        "classificacao": "2[6794]58[31615]",
+        "so_apisidra": true
       }
     },
     {
@@ -509,18 +515,19 @@
   ],
   "diagnostico_sidra": [],
   "sondas": [
-    "https://apisidra.ibge.gov.br/values/t/7138/n1/all/v/10276/p/last/c2/6794/c58/all",
-    "https://apisidra.ibge.gov.br/values/t/7138/n1/all/v/10276/p/last/c2/6794/c1568/all",
-    "https://apisidra.ibge.gov.br/values/t/7138/n1/all/v/10276/p/last/c2/6794/c287/all",
-    "https://apisidra.ibge.gov.br/values/t/7113/n1/all/v/10267/p/last/c2/6794/c58/all",
-    "https://apisidra.ibge.gov.br/values/t/7113/n1/all/v/10267/p/last/c2/6794/c1568/all",
-    "https://apisidra.ibge.gov.br/values/t/7113/n1/all/v/10267/p/last/c2/6794/c287/all",
-    "https://www.ipeadata.gov.br/api/odata4/Metadados?$filter=contains(SERNOME,'omic')&$select=SERCODIGO,SERNOME,FNTSIGLA,PERNOME&$top=40",
-    "https://www.gov.br/mj/pt-br/assuntos/sua-seguranca/seguranca-publica/estatistica/dados-nacionais-1",
-    "https://dados.gov.br/",
-    "https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/ideb/resultados",
-    "https://opendatasus.saude.gov.br/dataset?q=mortalidade+infantil",
-    "https://ftp.datasus.gov.br/dissemin/publicos/SINASC/",
-    "https://api.worldbank.org/v2/country/BRA/indicator/SP.DYN.IMRT.IN?format=json&per_page=5"
+    "https://www.ipeadata.gov.br/api/odata4/Metadados?$filter=contains(SERNOME,'omic')",
+    "https://www.ipeadata.gov.br/api/odata4/Metadados?$filter=contains(SERNOME,'omic')&$select=SERCODIGO,SERNOME",
+    "https://www.ipeadata.gov.br/api/odata4/Metadados?$select=SERCODIGO,SERNOME&$top=5",
+    "https://www.ipea.gov.br/atlasviolencia/api/v1/series",
+    "https://www.ipea.gov.br/atlasviolencia/api/v1/valores-series/20/3",
+    "https://apisidra.ibge.gov.br/values/t/7358/n1/all/v/all/p/last",
+    "https://apisidra.ibge.gov.br/values/t/7359/n1/all/v/all/p/last",
+    "https://apisidra.ibge.gov.br/values/t/7360/n1/all/v/all/p/last",
+    "https://apisidra.ibge.gov.br/values/t/7361/n1/all/v/all/p/last",
+    "https://apisidra.ibge.gov.br/values/t/7362/n1/all/v/all/p/last",
+    "https://apisidra.ibge.gov.br/values/t/7363/n1/all/v/all/p/last",
+    "http://tabnet.datasus.gov.br/",
+    "https://datasus.saude.gov.br/",
+    "https://dadosabertos.inep.gov.br/"
   ]
 }
