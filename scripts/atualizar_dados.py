@@ -116,6 +116,10 @@ def interpretar_apisidra(dados, periodicidade, filtro_var=None):
         vistos.add(rot)
         pontos.append((rot, v))
     pontos.sort()
+    if not pontos and filtro_var:
+        nomes = sorted({l.get(chave_var, "?") for l in linhas})[:8] if chave_var else []
+        log(f"  DIAGNÓSTICO: filtro '{filtro_var}' não achou nada. Cabeçalho: {cab}")
+        log(f"  DIAGNÓSTICO: {len(linhas)} linhas; variáveis: {nomes}; exemplo: {linhas[:2]}")
     return cab.get("V", ""), cab.get("MN", ""), pontos
 
 
@@ -188,7 +192,13 @@ def coletar_sgs(ind):
             f"https://api.bcb.gov.br/dados/serie/bcdata.sgs.{c['serie']}/dados?formato=json"
             f"&dataInicial={janela_ini:%d/%m/%Y}&dataFinal={janela_fim:%d/%m/%Y}"
         )
-        registros.extend(http_json(url))
+        try:
+            registros.extend(http_json(url, tentativas=1))
+        except RuntimeError as exc:
+            if "404" in str(exc):  # o SGS responde 404 quando a série não tem dados no período
+                log("  sem dados neste período (404); seguindo")
+            else:
+                raise
         janela_ini = dt.date(janela_fim.year + 1, 1, 1)
     pontos = interpretar_sgs(registros)
     if not pontos:
@@ -309,12 +319,38 @@ def montar(sem_rede=False):
     }, falhas, tentativas
 
 
+def diagnosticar(tabelas):
+    """Só registra no log como são as tabelas (para escolher filtros). Não altera os dados."""
+    for t in tabelas:
+        log(f"DIAGNOSTICO tabela {t}")
+        try:
+            meta = http_json(f"https://servicodados.ibge.gov.br/api/v3/agregados/{t}/metadados", tentativas=1, timeout=20)
+            log(f"  nome: {meta.get('nome')}")
+            log("  variaveis: " + "; ".join(f"{v['id']}={v['nome']}" for v in meta.get("variaveis", [])))
+            for cl in meta.get("classificacoes", []):
+                cats = ", ".join(f"{c['id']}={c['nome']}" for c in cl.get("categorias", [])[:25])
+                log(f"  classificacao {cl['id']} ({cl['nome']}): {cats}")
+            continue
+        except Exception as exc:  # noqa: BLE001
+            log(f"  metadados indisponíveis: {exc}")
+        try:
+            dados = http_json(f"https://apisidra.ibge.gov.br/values/t/{t}/n1/all/v/all/p/last", tentativas=1, timeout=45)
+            log("  cabecalho: " + json.dumps(dados[0], ensure_ascii=False))
+            for l in dados[1:6]:
+                log("  linha: " + json.dumps(l, ensure_ascii=False))
+        except Exception as exc:  # noqa: BLE001
+            log(f"  apisidra indisponível: {exc}")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--sem-rede", action="store_true", help="não acessa as APIs; reaplica só os valores manuais")
     args = ap.parse_args()
 
     dados, falhas, tentativas = montar(sem_rede=args.sem_rede)
+    if not args.sem_rede:
+        with open(CATALOGO, encoding="utf-8") as f:
+            diagnosticar(json.load(f).get("diagnostico_sidra", []))
     texto = json.dumps(dados, ensure_ascii=False, indent=1)
     with open(SAIDA_JSON, "w", encoding="utf-8") as f:
         f.write(texto + "\n")
