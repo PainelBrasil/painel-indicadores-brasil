@@ -1,0 +1,24 @@
+indicador,periodo,valor,fonte,link,verificacao
+mvi_total,2024,44127,"Anuário Brasileiro de Segurança Pública 2026 (FBSP), lido em reportagem do Jornal do Brasil de 24/07/2026",https://www.jb.com.br/brasil/2026/07/1060384-brasil-tem-menor-taxa-de-mortes-violentas-intencionais-desde-2012.html,secundaria
+mvi_total,2025,40775,"Anuário Brasileiro de Segurança Pública 2026 (FBSP), lido em reportagem do Jornal do Brasil de 24/07/2026",https://www.jb.com.br/brasil/2026/07/1060384-brasil-tem-menor-taxa-de-mortes-violentas-intencionais-desde-2012.html,secundaria
+mvi_taxa,2012,27.7,"Anuário Brasileiro de Segurança Pública 2026 (FBSP), lido em reportagem do Jornal do Brasil de 24/07/2026",https://www.jb.com.br/brasil/2026/07/1060384-brasil-tem-menor-taxa-de-mortes-violentas-intencionais-desde-2012.html,secundaria
+mvi_taxa,2025,19.1,"Anuário Brasileiro de Segurança Pública 2026 (FBSP), lido em reportagem do Jornal do Brasil de 24/07/2026",https://www.jb.com.br/brasil/2026/07/1060384-brasil-tem-menor-taxa-de-mortes-violentas-intencionais-desde-2012.html,secundaria
+feminicidios,2025,1571,"Anuário Brasileiro de Segurança Pública 2026 (FBSP), lido em reportagem do Jornal do Brasil de 24/07/2026",https://www.jb.com.br/brasil/2026/07/1060384-brasil-tem-menor-taxa-de-mortes-violentas-intencionais-desde-2012.html,secundaria
+expectativa_vida,2022,75.5,"IBGE, Tábuas Completas de Mortalidade 2023 (divulgada em 29/11/2024), lida em reportagem de A Gazeta",https://www.agazeta.com.br/brasil/expectativa-de-vida-ao-nascer-no-brasil-sobe-para-764-anos-em-2023-1124,secundaria
+expectativa_vida,2023,76.4,"IBGE, Tábuas Completas de Mortalidade 2023 (divulgada em 29/11/2024), lida em reportagem de A Gazeta",https://www.agazeta.com.br/brasil/expectativa-de-vida-ao-nascer-no-brasil-sobe-para-764-anos-em-2023-1124,secundaria
+ideb_anos_iniciais,2023,6.0,"Ideb 2025, divulgado pelo MEC em 05/08/2026, lido em reportagem de O Povo",https://www.opovo.com.br/noticias/brasil/2026/08/05/ideb-mostra-avanco-da-educacao-basica-no-pais.html,secundaria
+ideb_anos_iniciais,2025,6.3,"Ideb 2025, divulgado pelo MEC em 05/08/2026, lido em reportagem de O Povo",https://www.opovo.com.br/noticias/brasil/2026/08/05/ideb-mostra-avanco-da-educacao-basica-no-pais.html,secundaria
+ideb_anos_finais,2023,5.0,"Ideb 2025, divulgado pelo MEC em 05/08/2026, lido em reportagem de O Povo",https://www.opovo.com.br/noticias/brasil/2026/08/05/ideb-mostra-avanco-da-educacao-basica-no-pais.html,secundaria
+ideb_anos_finais,2025,5.3,"Ideb 2025, divulgado pelo MEC em 05/08/2026, lido em reportagem de O Povo",https://www.opovo.com.br/noticias/brasil/2026/08/05/ideb-mostra-avanco-da-educacao-basica-no-pais.html,secundaria
+ideb_ensino_medio,2023,4.3,"Ideb 2025, divulgado pelo MEC em 05/08/2026, lido em reportagem de O Povo",https://www.opovo.com.br/noticias/brasil/2026/08/05/ideb-mostra-avanco-da-educacao-basica-no-pais.html,secundaria
+ideb_ensino_medio,2025,4.5,"Ideb 2025, divulgado pelo MEC em 05/08/2026, lido em reportagem de O Povo",https://www.opovo.com.br/noticias/brasil/2026/08/05/ideb-mostra-avanco-da-educacao-basica-no-pais.html,secundaria
+analfabetismo,2024,5.3,"IBGE, Painel de Indicadores (PNAD Contínua Educação), lido em 26/10/2026",https://www.ibge.gov.br/indicadores,primaria
+analfabetismo,2025,4.9,"IBGE, Painel de Indicadores (PNAD Contínua Educação), lido em 26/10/2026",https://www.ibge.gov.br/indicadores,primaria
+escolarizacao,2024,99.5,"IBGE, Painel de Indicadores (PNAD Contínua Educação), lido em 26/10/2026",https://www.ibge.gov.br/indicadores,primaria
+escolarizacao,2025,99.5,"IBGE, Painel de Indicadores (PNAD Contínua Educação), lido em 26/10/2026",https://www.ibge.gov.br/indicadores,primaria
+ipca_mensal,2026-08,-0.32,"IBGE, Painel de Indicadores (valores iniciais até a primeira coleta automática), lido em 26/10/2026",https://www.ibge.gov.br/indicadores,primaria
+ipca_mensal,2026-09,0.82,"IBGE, Painel de Indicadores (valores iniciais até a primeira coleta automática), lido em 26/10/2026",https://www.ibge.gov.br/indicadores,primaria
+ipca_12m,2026-09,4.58,"IBGE, Painel de Indicadores (valores iniciais até a primeira coleta automática), lido em 26/10/2026",https://www.ibge.gov.br/indicadores,primaria
+desocupacao,2026-T1,6.1,"IBGE, Painel de Indicadores (valores iniciais até a primeira coleta automática), lido em 26/10/2026",https://www.ibge.gov.br/indicadores,primaria
+desocupacao,2026-T2,5.4,"IBGE, Painel de Indicadores (valores iniciais até a primeira coleta automática), lido em 26/10/2026",https://www.ibge.gov.br/indicadores,primaria
+pib_4tri,2026-T2,1.9,"IBGE, Painel de Indicadores (valores iniciais até a primeira coleta automática), lido em 26/10/2026",https://www.ibge.gov.br/indicadores,primaria
