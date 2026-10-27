@@ -448,7 +448,7 @@
       "coleta": {
         "tipo": "sgs",
         "serie": 13762,
-        "inicio": "2000-01-01"
+        "inicio": "2006-01-01"
       },
       "nota": "Inclui governo federal, estados e municípios (INSS incluído)."
     },
@@ -473,7 +473,7 @@
     {
       "id": "resultado_primario",
       "pilar": "fiscal",
-      "nome": "Resultado primário, acumulado em 12 meses",
+      "nome": "Resultado primário em 12 meses (déficit +)",
       "unidade": "% do PIB",
       "sufixo": " %",
       "casas": 1,
@@ -486,12 +486,12 @@
         "serie": 5793,
         "inicio": "2000-01-01"
       },
-      "nota": "Valor positivo = superávit; negativo = déficit. Antes do pagamento de juros."
+      "nota": "Convenção do Banco Central (NFSP): valor positivo = déficit primário; negativo = superávit. Antes do pagamento de juros."
     },
     {
       "id": "resultado_nominal",
       "pilar": "fiscal",
-      "nome": "Resultado nominal (sem desvalorização cambial), 12 meses",
+      "nome": "Resultado nominal em 12 meses (déficit +), sem desvalorização cambial",
       "unidade": "% do PIB",
       "sufixo": " %",
       "casas": 1,
@@ -504,7 +504,11 @@
         "serie": 5727,
         "inicio": "2000-01-01"
       },
-      "nota": "Valor negativo = déficit. Inclui o pagamento de juros."
+      "nota": "Convenção do Banco Central (NFSP): valor positivo = déficit; negativo = superávit. Inclui o pagamento de juros."
     }
+  ],
+  "diagnostico_sidra": [
+    7113,
+    7138
   ]
 }
