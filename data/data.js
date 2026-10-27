@@ -1,5 +1,5 @@
 window.PAINEL = {
- "geradoEm": "2026-10-27T12:51:30Z",
+ "geradoEm": "2026-10-27T12:59:18Z",
  "pilares": [
   {
    "id": "economia",
@@ -13308,10 +13308,9 @@ window.PAINEL = {
      9.48
     ]
    ],
-   "status": "erro",
+   "status": "api",
    "coletadoEm": "2026-10-27",
-   "origem": "api",
-   "erro": "falha ao acessar https://api.bcb.gov.br/dados/serie/bcdata.sgs.5727/dados?formato=json&dataInicial=01/01/2015&dataFinal=31/12/2019: Expecting value: line 1 column 1 (char 0)"
+   "origem": "api"
   }
  ]
 };
