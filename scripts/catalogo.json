@@ -507,16 +507,20 @@
       "nota": "Convenção do Banco Central (NFSP): valor positivo = déficit; negativo = superávit. Inclui o pagamento de juros."
     }
   ],
-  "diagnostico_sidra": [
-    7113,
-    7138
-  ],
+  "diagnostico_sidra": [],
   "sondas": [
-    "https://www.ipeadata.gov.br/api/odata4/Metadados?$top=2",
-    "https://www.ipeadata.gov.br/api/odata4/Metadados?$filter=contains(SERNOME,'omic%C3%ADdios')&$select=SERCODIGO,SERNOME,PERNOME,FNTSIGLA&$top=15",
-    "https://dados.mj.gov.br/api/3/action/package_search?q=sinesp&rows=5",
-    "https://apidadosabertos.saude.gov.br/",
-    "https://download.inep.gov.br/",
-    "https://dadosabertos.tesouro.gov.br/api/3/action/package_list"
+    "https://apisidra.ibge.gov.br/values/t/7138/n1/all/v/10276/p/last/c2/6794/c58/all",
+    "https://apisidra.ibge.gov.br/values/t/7138/n1/all/v/10276/p/last/c2/6794/c1568/all",
+    "https://apisidra.ibge.gov.br/values/t/7138/n1/all/v/10276/p/last/c2/6794/c287/all",
+    "https://apisidra.ibge.gov.br/values/t/7113/n1/all/v/10267/p/last/c2/6794/c58/all",
+    "https://apisidra.ibge.gov.br/values/t/7113/n1/all/v/10267/p/last/c2/6794/c1568/all",
+    "https://apisidra.ibge.gov.br/values/t/7113/n1/all/v/10267/p/last/c2/6794/c287/all",
+    "https://www.ipeadata.gov.br/api/odata4/Metadados?$filter=contains(SERNOME,'omic')&$select=SERCODIGO,SERNOME,FNTSIGLA,PERNOME&$top=40",
+    "https://www.gov.br/mj/pt-br/assuntos/sua-seguranca/seguranca-publica/estatistica/dados-nacionais-1",
+    "https://dados.gov.br/",
+    "https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/ideb/resultados",
+    "https://opendatasus.saude.gov.br/dataset?q=mortalidade+infantil",
+    "https://ftp.datasus.gov.br/dissemin/publicos/SINASC/",
+    "https://api.worldbank.org/v2/country/BRA/indicator/SP.DYN.IMRT.IN?format=json&per_page=5"
   ]
 }
