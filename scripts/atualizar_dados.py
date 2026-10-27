@@ -179,9 +179,13 @@ def interpretar_sgs(registros):
     return sorted(por_mes.items())
 
 
-def coletar_sgs(ind):
+def coletar_sgs(ind, serie_anterior=None):
     c = ind["coleta"]
     inicio = dt.date.fromisoformat(c.get("inicio", "2000-01-01"))
+    # Se já temos a série, busca só os últimos meses e junta (poucas consultas = menos falhas do BCB).
+    if serie_anterior and len(serie_anterior) >= 24:
+        inicio = max(inicio, dt.date(int(serie_anterior[-1][0][:4]) - 2, 1, 1))
+        log(f"  atualização incremental a partir de {inicio}")
     hoje = dt.date.today()
     registros = []
     janela_ini = inicio
@@ -193,17 +197,21 @@ def coletar_sgs(ind):
             f"&dataInicial={janela_ini:%d/%m/%Y}&dataFinal={janela_fim:%d/%m/%Y}"
         )
         try:
-            registros.extend(http_json(url, tentativas=3, espera=4, timeout=40))
-            time.sleep(1)
+            registros.extend(http_json(url, tentativas=4, espera=5, timeout=40))
         except RuntimeError as exc:
-            if "404" in str(exc):  # o SGS responde 404 quando a série não tem dados no período
-                log("  sem dados neste período (404); seguindo")
+            if "404" in str(exc):
+                log("  (sem dados neste período; seguindo)")  # a série começa depois
             else:
                 raise
+        time.sleep(2)
         janela_ini = dt.date(janela_fim.year + 1, 1, 1)
     pontos = interpretar_sgs(registros)
     if not pontos:
         raise ValueError("a API não devolveu valores")
+    if serie_anterior and len(serie_anterior) >= 24:
+        mesclado = {p: v for p, v in serie_anterior}
+        mesclado.update(dict(pontos))
+        pontos = sorted(mesclado.items())
     return pontos, {}
 
 
@@ -286,7 +294,10 @@ def montar(sem_rede=False):
                 try:
                     coletor = coletar_sidra if tipo == "sidra" else coletar_sgs
                     try:
-                        pontos, extra = coletor(ind)
+                        if tipo == "sgs":
+                            pontos, extra = coletar_sgs(ind, antigo.get("serie"))
+                        else:
+                            pontos, extra = coletor(ind)
                     except Exception as exc_principal:  # noqa: BLE001
                         alt = ind["coleta"].get("alt_sgs")
                         if not alt:
@@ -347,16 +358,31 @@ def diagnosticar(tabelas):
 def sondar(urls):
     """Só testa se o GitHub alcança estes endereços e registra o início da resposta no log."""
     import re
+    cab = dict(CABECALHOS, **{"User-Agent": "Mozilla/5.0 (compatible; painel-indicadores-brasil/1.0)"})
     for u in urls:
         log(f"SONDA {u}")
         try:
-            req = request.Request(u, headers=CABECALHOS)
+            req = request.Request(u, headers=cab)
             with request.urlopen(req, timeout=25) as r:
-                corpo = r.read(200000).decode("utf-8", "replace")
+                corpo = r.read(600000).decode("utf-8", "replace")
                 tipo = r.headers.get("Content-Type", "")
                 log(f"  status {r.status}, tipo {tipo}, {len(corpo)} caracteres lidos")
-                limpo = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", corpo)) if "html" in tipo else corpo
-                log("  início: " + limpo[:1500])
+                try:
+                    dados = json.loads(corpo)
+                except ValueError:
+                    dados = None
+                if isinstance(dados, list) and dados and isinstance(dados[0], dict) and "V" in dados[0]:
+                    log("  cabecalho: " + json.dumps(dados[0], ensure_ascii=False))
+                    for k in dados[0]:
+                        if k.startswith("D") and k.endswith("C"):
+                            pares = sorted({(l.get(k), l.get(k[:-1] + "N")) for l in dados[1:]})
+                            log(f"  {dados[0][k]}: {pares[:40]}")
+                    continue
+                if "html" in tipo:
+                    links = sorted(set(re.findall(r'href="([^"]+\.(?:xlsx|xls|csv|zip|ods)[^"]*)"', corpo, flags=re.I)))
+                    log("  links de arquivos: " + "; ".join(links[:25]))
+                    corpo = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", corpo))
+                log("  início: " + corpo[:1500])
         except error.HTTPError as exc:
             log(f"  HTTP {exc.code}")
         except Exception as exc:  # noqa: BLE001
