@@ -1,9 +1,21 @@
 {
   "pilares": [
-    { "id": "economia", "nome": "Economia e trabalho" },
-    { "id": "seguranca", "nome": "Segurança pública" },
-    { "id": "saude", "nome": "Saúde" },
-    { "id": "educacao", "nome": "Educação" }
+    {
+      "id": "economia",
+      "nome": "Economia e trabalho"
+    },
+    {
+      "id": "seguranca",
+      "nome": "Segurança pública"
+    },
+    {
+      "id": "saude",
+      "nome": "Saúde"
+    },
+    {
+      "id": "educacao",
+      "nome": "Educação"
+    }
   ],
   "indicadores": [
     {
@@ -17,7 +29,14 @@
       "fonte": "IBGE",
       "fonte_detalhe": "IPCA, Sistema SIDRA, tabela 1737",
       "url_fonte": "https://sidra.ibge.gov.br/tabela/1737",
-      "coleta": { "tipo": "sidra", "agregado": 1737, "variavel": 63 },
+      "coleta": {
+        "tipo": "sidra",
+        "agregado": 1737,
+        "variavel": 63,
+        "alt_sgs": {
+          "serie": 433
+        }
+      },
       "nota": "Índice oficial de inflação. Valores negativos indicam queda média de preços no mês."
     },
     {
@@ -31,7 +50,14 @@
       "fonte": "IBGE",
       "fonte_detalhe": "IPCA, Sistema SIDRA, tabela 1737",
       "url_fonte": "https://sidra.ibge.gov.br/tabela/1737",
-      "coleta": { "tipo": "sidra", "agregado": 1737, "variavel": 2265 },
+      "coleta": {
+        "tipo": "sidra",
+        "agregado": 1737,
+        "variavel": 2265,
+        "alt_sgs": {
+          "serie": 13522
+        }
+      },
       "nota": "Inflação acumulada nos 12 meses até o mês indicado."
     },
     {
@@ -45,7 +71,15 @@
       "fonte": "IBGE",
       "fonte_detalhe": "PNAD Contínua trimestral, Sistema SIDRA, tabela 4099",
       "url_fonte": "https://sidra.ibge.gov.br/tabela/4099",
-      "coleta": { "tipo": "sidra", "agregado": 4099, "variavel": 4099 },
+      "coleta": {
+        "tipo": "sidra",
+        "agregado": 4099,
+        "variavel": 4099,
+        "alt_sgs": {
+          "serie": 24369,
+          "trimestral": true
+        }
+      },
       "nota": "Pessoas de 14 anos ou mais sem trabalho que procuraram emprego, em relação à força de trabalho."
     },
     {
@@ -59,7 +93,12 @@
       "fonte": "IBGE",
       "fonte_detalhe": "Contas Nacionais Trimestrais, Sistema SIDRA, tabela 5932",
       "url_fonte": "https://sidra.ibge.gov.br/tabela/5932",
-      "coleta": { "tipo": "sidra", "agregado": 5932, "variavel": 6564, "classificacao": "11255[90707]" },
+      "coleta": {
+        "tipo": "sidra",
+        "agregado": 5932,
+        "variavel": 6564,
+        "classificacao": "11255[90707]"
+      },
       "nota": "PIB a preços de mercado, índice de volume, comparado ao trimestre imediatamente anterior."
     },
     {
@@ -73,7 +112,12 @@
       "fonte": "IBGE",
       "fonte_detalhe": "Contas Nacionais Trimestrais, Sistema SIDRA, tabela 5932",
       "url_fonte": "https://sidra.ibge.gov.br/tabela/5932",
-      "coleta": { "tipo": "sidra", "agregado": 5932, "variavel": 6562, "classificacao": "11255[90707]" },
+      "coleta": {
+        "tipo": "sidra",
+        "agregado": 5932,
+        "variavel": 6562,
+        "classificacao": "11255[90707]"
+      },
       "nota": "Variação do volume do PIB nos últimos quatro trimestres contra os quatro anteriores."
     },
     {
@@ -88,7 +132,11 @@
       "fonte": "Banco Central do Brasil",
       "fonte_detalhe": "Meta Selic definida pelo Copom, SGS série 432 (valor do último dia de cada mês)",
       "url_fonte": "https://dadosabertos.bcb.gov.br/dataset/432-taxa-de-juros---meta-selic-definida-pelo-copom",
-      "coleta": { "tipo": "sgs", "serie": 432, "inicio": "2000-01-01" },
+      "coleta": {
+        "tipo": "sgs",
+        "serie": 432,
+        "inicio": "2000-01-01"
+      },
       "nota": "A série oficial é diária; o painel mostra o valor vigente no último dia de cada mês."
     },
     {
@@ -102,10 +150,13 @@
       "fonte": "Banco Central do Brasil",
       "fonte_detalhe": "Taxa de câmbio livre, dólar americano (venda), SGS série 1 (valor do último dia de cada mês)",
       "url_fonte": "https://dadosabertos.bcb.gov.br/dataset?q=taxa+de+c%C3%A2mbio+livre+d%C3%B3lar",
-      "coleta": { "tipo": "sgs", "serie": 1, "inicio": "2000-01-01" },
+      "coleta": {
+        "tipo": "sgs",
+        "serie": 1,
+        "inicio": "2000-01-01"
+      },
       "nota": "A série oficial é diária; o painel mostra a cotação do último dia de cada mês."
     },
-
     {
       "id": "mvi_total",
       "pilar": "seguranca",
@@ -116,7 +167,9 @@
       "fonte": "Fórum Brasileiro de Segurança Pública",
       "fonte_detalhe": "Anuário Brasileiro de Segurança Pública",
       "url_fonte": "https://forumseguranca.org.br/anuario-brasileiro-de-seguranca-publica/",
-      "coleta": { "tipo": "manual" },
+      "coleta": {
+        "tipo": "manual"
+      },
       "nota": "Soma de homicídios dolosos, latrocínios, lesões corporais seguidas de morte e mortes por intervenção policial. Os números diferem entre FBSP, Sinesp e DATASUS por diferenças de metodologia."
     },
     {
@@ -129,7 +182,9 @@
       "fonte": "Fórum Brasileiro de Segurança Pública",
       "fonte_detalhe": "Anuário Brasileiro de Segurança Pública",
       "url_fonte": "https://forumseguranca.org.br/anuario-brasileiro-de-seguranca-publica/",
-      "coleta": { "tipo": "manual" },
+      "coleta": {
+        "tipo": "manual"
+      },
       "nota": "Taxa de mortes violentas intencionais em relação à população."
     },
     {
@@ -142,7 +197,9 @@
       "fonte": "Fórum Brasileiro de Segurança Pública",
       "fonte_detalhe": "Anuário Brasileiro de Segurança Pública",
       "url_fonte": "https://forumseguranca.org.br/anuario-brasileiro-de-seguranca-publica/",
-      "coleta": { "tipo": "manual" },
+      "coleta": {
+        "tipo": "manual"
+      },
       "nota": "Mulheres mortas por razões de gênero, conforme registros policiais."
     },
     {
@@ -155,7 +212,9 @@
       "fonte": "Fórum Brasileiro de Segurança Pública",
       "fonte_detalhe": "Anuário Brasileiro de Segurança Pública",
       "url_fonte": "https://forumseguranca.org.br/anuario-brasileiro-de-seguranca-publica/",
-      "coleta": { "tipo": "manual" },
+      "coleta": {
+        "tipo": "manual"
+      },
       "pendente": "Falta o número anual absoluto. A reportagem consultada informa apenas alta de 5,4% em 2025."
     },
     {
@@ -168,10 +227,11 @@
       "fonte": "Secretaria Nacional de Políticas Penais (Senappen/MJSP)",
       "fonte_detalhe": "Sisdepen, estatísticas penitenciárias",
       "url_fonte": "https://www.gov.br/senappen/pt-br/servicos/sisdepen",
-      "coleta": { "tipo": "manual" },
+      "coleta": {
+        "tipo": "manual"
+      },
       "pendente": "Falta baixar o relatório oficial do Sisdepen e registrar a série."
     },
-
     {
       "id": "mortalidade_infantil",
       "pilar": "saude",
@@ -182,7 +242,9 @@
       "fonte": "Ministério da Saúde",
       "fonte_detalhe": "SIM e SINASC (DATASUS); dado recente é preliminar",
       "url_fonte": "https://datasus.saude.gov.br/",
-      "coleta": { "tipo": "manual" },
+      "coleta": {
+        "tipo": "manual"
+      },
       "pendente": "Falta a série do Ministério da Saúde (óbitos de menores de 1 ano por mil nascidos vivos). Fonte escolhida: SIM/SINASC, com aviso de dado preliminar."
     },
     {
@@ -196,7 +258,9 @@
       "fonte": "IBGE",
       "fonte_detalhe": "Tábuas Completas de Mortalidade",
       "url_fonte": "https://www.ibge.gov.br/estatisticas/sociais/populacao/9126-tabuas-completas-de-mortalidade.html",
-      "coleta": { "tipo": "manual" },
+      "coleta": {
+        "tipo": "manual"
+      },
       "nota": "A série foi revista pelo IBGE após o Censo 2022. Valores de edições antigas da tábua não são comparáveis com os atuais."
     },
     {
@@ -209,7 +273,9 @@
       "fonte": "Ministério da Saúde",
       "fonte_detalhe": "Programa Nacional de Imunizações (PNI)",
       "url_fonte": "https://datasus.saude.gov.br/",
-      "coleta": { "tipo": "manual" },
+      "coleta": {
+        "tipo": "manual"
+      },
       "pendente": "Falta definir quais vacinas acompanhar (por exemplo, tríplice viral e poliomielite) e registrar a série do PNI."
     },
     {
@@ -222,10 +288,11 @@
       "fonte": "Ministério da Saúde",
       "fonte_detalhe": "e-Gestor Atenção Básica",
       "url_fonte": "https://egestorab.saude.gov.br/",
-      "coleta": { "tipo": "manual" },
+      "coleta": {
+        "tipo": "manual"
+      },
       "pendente": "Falta registrar a série de cobertura de Atenção Primária do e-Gestor."
     },
-
     {
       "id": "ideb_anos_iniciais",
       "pilar": "educacao",
@@ -236,7 +303,9 @@
       "fonte": "Inep / MEC",
       "fonte_detalhe": "Índice de Desenvolvimento da Educação Básica",
       "url_fonte": "https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/ideb",
-      "coleta": { "tipo": "manual" },
+      "coleta": {
+        "tipo": "manual"
+      },
       "nota": "Combina taxa de aprovação e desempenho no Saeb. Divulgado a cada dois anos."
     },
     {
@@ -249,7 +318,9 @@
       "fonte": "Inep / MEC",
       "fonte_detalhe": "Índice de Desenvolvimento da Educação Básica",
       "url_fonte": "https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/ideb",
-      "coleta": { "tipo": "manual" },
+      "coleta": {
+        "tipo": "manual"
+      },
       "nota": "Combina taxa de aprovação e desempenho no Saeb. Divulgado a cada dois anos."
     },
     {
@@ -262,7 +333,9 @@
       "fonte": "Inep / MEC",
       "fonte_detalhe": "Índice de Desenvolvimento da Educação Básica",
       "url_fonte": "https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/ideb",
-      "coleta": { "tipo": "manual" },
+      "coleta": {
+        "tipo": "manual"
+      },
       "nota": "Combina taxa de aprovação e desempenho no Saeb. Divulgado a cada dois anos."
     },
     {
@@ -276,7 +349,9 @@
       "fonte": "IBGE",
       "fonte_detalhe": "PNAD Contínua, suplemento de Educação",
       "url_fonte": "https://www.ibge.gov.br/estatisticas/sociais/educacao/17270-pnad-continua.html",
-      "coleta": { "tipo": "manual" }
+      "coleta": {
+        "tipo": "manual"
+      }
     },
     {
       "id": "escolarizacao",
@@ -289,7 +364,9 @@
       "fonte": "IBGE",
       "fonte_detalhe": "PNAD Contínua, suplemento de Educação",
       "url_fonte": "https://www.ibge.gov.br/estatisticas/sociais/educacao/17270-pnad-continua.html",
-      "coleta": { "tipo": "manual" }
+      "coleta": {
+        "tipo": "manual"
+      }
     },
     {
       "id": "pisa_matematica",
@@ -301,7 +378,9 @@
       "fonte": "OCDE",
       "fonte_detalhe": "Programa Internacional de Avaliação de Estudantes",
       "url_fonte": "https://www.oecd.org/pt/publications/resultdos-do-pisa-2025-volume-i_afb355f4-pt/brasil_c7e013c5-pt",
-      "coleta": { "tipo": "manual" },
+      "coleta": {
+        "tipo": "manual"
+      },
       "pendente": "Resultados de 2025 publicados em 08/09/2026. Falta registrar as pontuações a partir da nota oficial do Brasil na OCDE."
     },
     {
@@ -314,7 +393,9 @@
       "fonte": "OCDE",
       "fonte_detalhe": "Programa Internacional de Avaliação de Estudantes",
       "url_fonte": "https://www.oecd.org/pt/publications/resultdos-do-pisa-2025-volume-i_afb355f4-pt/brasil_c7e013c5-pt",
-      "coleta": { "tipo": "manual" },
+      "coleta": {
+        "tipo": "manual"
+      },
       "pendente": "Falta registrar as pontuações a partir da nota oficial do Brasil na OCDE."
     },
     {
@@ -327,7 +408,9 @@
       "fonte": "OCDE",
       "fonte_detalhe": "Programa Internacional de Avaliação de Estudantes",
       "url_fonte": "https://www.oecd.org/pt/publications/resultdos-do-pisa-2025-volume-i_afb355f4-pt/brasil_c7e013c5-pt",
-      "coleta": { "tipo": "manual" },
+      "coleta": {
+        "tipo": "manual"
+      },
       "pendente": "Falta registrar as pontuações a partir da nota oficial do Brasil na OCDE."
     },
     {
@@ -340,7 +423,9 @@
       "fonte": "Inep",
       "fonte_detalhe": "Censo Escolar, taxas de rendimento",
       "url_fonte": "https://www.gov.br/inep/pt-br/areas-de-atuacao/pesquisas-estatisticas-e-indicadores/censo-escolar",
-      "coleta": { "tipo": "manual" },
+      "coleta": {
+        "tipo": "manual"
+      },
       "pendente": "Falta baixar as taxas de rendimento do Censo Escolar e registrar a série nacional."
     }
   ]
