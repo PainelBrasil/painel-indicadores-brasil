@@ -1,5 +1,5 @@
 window.PAINEL = {
- "geradoEm": "2026-10-27T13:08:37Z",
+ "geradoEm": "2026-10-27T15:09:00Z",
  "pilares": [
   {
    "id": "economia",
