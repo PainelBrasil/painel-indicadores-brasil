@@ -132,7 +132,7 @@ def coletar_sidra(ind):
     c = ind["coleta"]
     if IBGE_FORA:
         raise RuntimeError("IBGE fora do ar nesta execução (já falhou antes)")
-    if not V3_FORA and not c.get("variavel_nome"):
+    if not V3_FORA and not c.get("so_apisidra") and not c.get("variavel_nome"):
         url = (
             f"https://servicodados.ibge.gov.br/api/v3/agregados/{c['agregado']}"
             f"/periodos/all/variaveis/{c['variavel']}?localidades=N1[all]"
