@@ -95,52 +95,67 @@ def interpretar_sidra(dados, periodicidade):
     return variavel.get("variavel", ""), variavel.get("unidade", ""), pontos
 
 
-def interpretar_apisidra(dados, periodicidade):
+def interpretar_apisidra(dados, periodicidade, filtro_var=None):
     """Interpreta a resposta do endereço alternativo apisidra.ibge.gov.br."""
     cab, linhas = dados[0], dados[1:]
     chave = next((k for k, v in cab.items() if k.endswith("C") and any(
         t in v for t in ("Mês", "Trimestre", "Ano"))), None)
     if not chave:
         raise ValueError("resposta do apisidra sem coluna de período")
-    pontos = []
+    chave_var = next((k for k, v in cab.items() if v == "Variável" and k.endswith("N")), None)
+    pontos, vistos = [], set()
     for l in linhas:
+        if filtro_var and (not chave_var or filtro_var.lower() not in l.get(chave_var, "").lower()):
+            continue
         v = numero(l["V"])
-        if v is not None:
-            pontos.append((rotulo_periodo_sidra(l[chave], periodicidade), v))
+        if v is None:
+            continue
+        rot = rotulo_periodo_sidra(l[chave], periodicidade)
+        if rot in vistos:
+            raise ValueError(f"período repetido ({rot}): a consulta devolveu mais de uma série; filtro insuficiente")
+        vistos.add(rot)
+        pontos.append((rot, v))
     pontos.sort()
     return cab.get("V", ""), cab.get("MN", ""), pontos
 
 
-IBGE_FORA = False  # vira True quando o IBGE não responde; evita esperar de novo a cada indicador
+IBGE_FORA = False  # apisidra também falhou nesta execução
+V3_FORA = False  # o endereço principal (servicodados) falhou; não insistir nos demais
 
 
 def coletar_sidra(ind):
-    global IBGE_FORA
+    global IBGE_FORA, V3_FORA
     c = ind["coleta"]
     if IBGE_FORA:
         raise RuntimeError("IBGE fora do ar nesta execução (já falhou antes)")
-    url = (
-        f"https://servicodados.ibge.gov.br/api/v3/agregados/{c['agregado']}"
-        f"/periodos/all/variaveis/{c['variavel']}?localidades=N1[all]"
-    )
-    if c.get("classificacao"):
-        url += f"&classificacao={c['classificacao']}"
-    try:
-        dados = http_json(url, tentativas=1, timeout=45)
-        nome, unidade, pontos = interpretar_sidra(dados, ind["periodicidade"])
-    except Exception as exc:  # noqa: BLE001 - tenta o endereço alternativo
-        log(f"  endereço principal falhou ({exc}); tentando apisidra")
-        alt = f"https://apisidra.ibge.gov.br/values/t/{c['agregado']}/n1/all/v/{c['variavel']}/p/all"
+    if not V3_FORA and not c.get("variavel_nome"):
+        url = (
+            f"https://servicodados.ibge.gov.br/api/v3/agregados/{c['agregado']}"
+            f"/periodos/all/variaveis/{c['variavel']}?localidades=N1[all]"
+        )
         if c.get("classificacao"):
-            import re
-            for cl, cat in re.findall(r"(\d+)\[([^\]]+)\]", c["classificacao"]):
-                alt += f"/c{cl}/{cat}"
+            url += f"&classificacao={c['classificacao']}"
         try:
-            dados = http_json(alt, tentativas=1, timeout=45)
-        except Exception:
-            IBGE_FORA = True
-            raise
-        nome, unidade, pontos = interpretar_apisidra(dados, ind["periodicidade"])
+            dados = http_json(url, tentativas=1, timeout=45)
+            nome, unidade, pontos = interpretar_sidra(dados, ind["periodicidade"])
+            if not pontos:
+                raise ValueError("a API não devolveu valores")
+            return pontos, {"nomeNaFonte": nome, "unidadeNaFonte": unidade}
+        except Exception as exc:  # noqa: BLE001 - tenta o endereço alternativo
+            V3_FORA = True
+            log(f"  endereço principal falhou ({exc}); usando apisidra daqui em diante")
+    import re
+    var = c.get("variavel_nome") and "all" or c["variavel"]
+    alt = f"https://apisidra.ibge.gov.br/values/t/{c['agregado']}/n1/all/v/{var}/p/all"
+    if c.get("classificacao"):
+        for cl, cat in re.findall(r"(\d+)\[([^\]]+)\]", c["classificacao"]):
+            alt += f"/c{cl}/{cat}"
+    try:
+        dados = http_json(alt, tentativas=1, timeout=60)
+    except Exception:
+        IBGE_FORA = True
+        raise
+    nome, unidade, pontos = interpretar_apisidra(dados, ind["periodicidade"], c.get("variavel_nome"))
     if not pontos:
         raise ValueError("a API não devolveu valores")
     return pontos, {"nomeNaFonte": nome, "unidadeNaFonte": unidade}
