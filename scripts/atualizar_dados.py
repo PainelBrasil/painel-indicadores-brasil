@@ -31,7 +31,7 @@ CABECALHOS = {"User-Agent": "painel-indicadores-brasil/1.0", "Accept": "applicat
 
 
 INICIO = time.monotonic()
-LIMITE_TOTAL = 420  # segundos; depois disso as consultas restantes são abandonadas
+LIMITE_TOTAL = 900  # segundos; depois disso as consultas restantes são abandonadas
 
 
 def log(texto):
@@ -95,16 +95,52 @@ def interpretar_sidra(dados, periodicidade):
     return variavel.get("variavel", ""), variavel.get("unidade", ""), pontos
 
 
+def interpretar_apisidra(dados, periodicidade):
+    """Interpreta a resposta do endereço alternativo apisidra.ibge.gov.br."""
+    cab, linhas = dados[0], dados[1:]
+    chave = next((k for k, v in cab.items() if k.endswith("C") and any(
+        t in v for t in ("Mês", "Trimestre", "Ano"))), None)
+    if not chave:
+        raise ValueError("resposta do apisidra sem coluna de período")
+    pontos = []
+    for l in linhas:
+        v = numero(l["V"])
+        if v is not None:
+            pontos.append((rotulo_periodo_sidra(l[chave], periodicidade), v))
+    pontos.sort()
+    return cab.get("V", ""), cab.get("MN", ""), pontos
+
+
+IBGE_FORA = False  # vira True quando o IBGE não responde; evita esperar de novo a cada indicador
+
+
 def coletar_sidra(ind):
+    global IBGE_FORA
     c = ind["coleta"]
+    if IBGE_FORA:
+        raise RuntimeError("IBGE fora do ar nesta execução (já falhou antes)")
     url = (
         f"https://servicodados.ibge.gov.br/api/v3/agregados/{c['agregado']}"
         f"/periodos/all/variaveis/{c['variavel']}?localidades=N1[all]"
     )
     if c.get("classificacao"):
         url += f"&classificacao={c['classificacao']}"
-    dados = http_json(url)
-    nome, unidade, pontos = interpretar_sidra(dados, ind["periodicidade"])
+    try:
+        dados = http_json(url, tentativas=1, timeout=45)
+        nome, unidade, pontos = interpretar_sidra(dados, ind["periodicidade"])
+    except Exception as exc:  # noqa: BLE001 - tenta o endereço alternativo
+        log(f"  endereço principal falhou ({exc}); tentando apisidra")
+        alt = f"https://apisidra.ibge.gov.br/values/t/{c['agregado']}/n1/all/v/{c['variavel']}/p/all"
+        if c.get("classificacao"):
+            import re
+            for cl, cat in re.findall(r"(\d+)\[([^\]]+)\]", c["classificacao"]):
+                alt += f"/c{cl}/{cat}"
+        try:
+            dados = http_json(alt, tentativas=1, timeout=45)
+        except Exception:
+            IBGE_FORA = True
+            raise
+        nome, unidade, pontos = interpretar_apisidra(dados, ind["periodicidade"])
     if not pontos:
         raise ValueError("a API não devolveu valores")
     return pontos, {"nomeNaFonte": nome, "unidadeNaFonte": unidade}
@@ -223,7 +259,17 @@ def montar(sem_rede=False):
                 log(f"BUSCA {ind['id']} ({tipo}), {time.monotonic() - INICIO:.0f}s desde o início")
                 try:
                     coletor = coletar_sidra if tipo == "sidra" else coletar_sgs
-                    pontos, extra = coletor(ind)
+                    try:
+                        pontos, extra = coletor(ind)
+                    except Exception as exc_principal:  # noqa: BLE001
+                        alt = ind["coleta"].get("alt_sgs")
+                        if not alt:
+                            raise
+                        log(f"  fonte principal falhou ({exc_principal}); usando Banco Central SGS {alt['serie']}")
+                        pontos, extra = coletar_sgs({"coleta": {"serie": alt["serie"], "inicio": alt.get("inicio", "2000-01-01")}})
+                        if alt.get("trimestral"):
+                            pontos = [(f"{p[:4]}-T{int(p[5:7]) // 3}", v) for p, v in pontos if int(p[5:7]) % 3 == 0]
+                        extra = {"fonteAlternativa": f"Banco Central (SGS {alt['serie']}), que republica a série do IBGE"}
                     item["serie"] = [[p, v] for p, v in pontos]
                     item["status"] = "api"
                     item["coletadoEm"] = hoje
