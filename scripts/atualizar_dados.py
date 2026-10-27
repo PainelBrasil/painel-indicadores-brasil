@@ -30,15 +30,27 @@ SAIDA_JS = os.path.join(RAIZ, "data", "data.js")
 CABECALHOS = {"User-Agent": "painel-indicadores-brasil/1.0", "Accept": "application/json"}
 
 
-def http_json(url, tentativas=3, espera=3, timeout=90):
+INICIO = time.monotonic()
+LIMITE_TOTAL = 420  # segundos; depois disso as consultas restantes são abandonadas
+
+
+def log(texto):
+    print(texto, flush=True)
+
+
+def http_json(url, tentativas=2, espera=2, timeout=30):
     ultimo = None
     for i in range(tentativas):
+        if time.monotonic() - INICIO > LIMITE_TOTAL:
+            raise RuntimeError("tempo total da coleta esgotado")
         try:
+            log(f"  consultando (tentativa {i + 1}): {url[:120]}")
             req = request.Request(url, headers=CABECALHOS)
             with request.urlopen(req, timeout=timeout) as resp:
                 return json.loads(resp.read().decode("utf-8"))
-        except (error.URLError, error.HTTPError, TimeoutError, ValueError) as exc:
+        except Exception as exc:  # noqa: BLE001 - qualquer falha de rede ou leitura
             ultimo = exc
+            log(f"  falhou: {exc}")
             time.sleep(espera * (i + 1))
     raise RuntimeError(f"falha ao acessar {url}: {ultimo}")
 
@@ -208,6 +220,7 @@ def montar(sem_rede=False):
                     usar_valores_iniciais()
             else:
                 tentativas += 1
+                log(f"BUSCA {ind['id']} ({tipo}), {time.monotonic() - INICIO:.0f}s desde o início")
                 try:
                     coletor = coletar_sidra if tipo == "sidra" else coletar_sgs
                     pontos, extra = coletor(ind)
@@ -215,10 +228,10 @@ def montar(sem_rede=False):
                     item["status"] = "api"
                     item["coletadoEm"] = hoje
                     item.update(extra)
-                    print(f"OK    {ind['id']}: {len(pontos)} pontos, último {pontos[-1]}")
+                    log(f"OK    {ind['id']}: {len(pontos)} pontos, último {pontos[-1]}")
                 except Exception as exc:  # noqa: BLE001 - registrar e seguir com os demais
                     falhas += 1
-                    print(f"ERRO  {ind['id']}: {exc}")
+                    log(f"ERRO  {ind['id']}: {exc}")
                     if antigo.get("serie"):
                         item["serie"] = antigo["serie"]
                         item["coletadoEm"] = antigo.get("coletadoEm")
