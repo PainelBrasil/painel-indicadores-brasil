@@ -193,7 +193,8 @@ def coletar_sgs(ind):
             f"&dataInicial={janela_ini:%d/%m/%Y}&dataFinal={janela_fim:%d/%m/%Y}"
         )
         try:
-            registros.extend(http_json(url, tentativas=1))
+            registros.extend(http_json(url, tentativas=3, espera=4, timeout=40))
+            time.sleep(1)
         except RuntimeError as exc:
             if "404" in str(exc):  # o SGS responde 404 quando a série não tem dados no período
                 log("  sem dados neste período (404); seguindo")
@@ -333,6 +334,7 @@ def diagnosticar(tabelas):
             continue
         except Exception as exc:  # noqa: BLE001
             log(f"  metadados indisponíveis: {exc}")
+        sondar([f"https://apisidra.ibge.gov.br/desctabapi.aspx?c={t}"])
         try:
             dados = http_json(f"https://apisidra.ibge.gov.br/values/t/{t}/n1/all/v/all/p/last", tentativas=1, timeout=45)
             log("  cabecalho: " + json.dumps(dados[0], ensure_ascii=False))
@@ -340,6 +342,25 @@ def diagnosticar(tabelas):
                 log("  linha: " + json.dumps(l, ensure_ascii=False))
         except Exception as exc:  # noqa: BLE001
             log(f"  apisidra indisponível: {exc}")
+
+
+def sondar(urls):
+    """Só testa se o GitHub alcança estes endereços e registra o início da resposta no log."""
+    import re
+    for u in urls:
+        log(f"SONDA {u}")
+        try:
+            req = request.Request(u, headers=CABECALHOS)
+            with request.urlopen(req, timeout=25) as r:
+                corpo = r.read(200000).decode("utf-8", "replace")
+                tipo = r.headers.get("Content-Type", "")
+                log(f"  status {r.status}, tipo {tipo}, {len(corpo)} caracteres lidos")
+                limpo = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", corpo)) if "html" in tipo else corpo
+                log("  início: " + limpo[:1500])
+        except error.HTTPError as exc:
+            log(f"  HTTP {exc.code}")
+        except Exception as exc:  # noqa: BLE001
+            log(f"  falhou: {exc}")
 
 
 def main():
@@ -350,7 +371,9 @@ def main():
     dados, falhas, tentativas = montar(sem_rede=args.sem_rede)
     if not args.sem_rede:
         with open(CATALOGO, encoding="utf-8") as f:
-            diagnosticar(json.load(f).get("diagnostico_sidra", []))
+            cat = json.load(f)
+        diagnosticar(cat.get("diagnostico_sidra", []))
+        sondar(cat.get("sondas", []))
     texto = json.dumps(dados, ensure_ascii=False, indent=1)
     with open(SAIDA_JSON, "w", encoding="utf-8") as f:
         f.write(texto + "\n")
