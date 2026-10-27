@@ -5,6 +5,10 @@
       "nome": "Economia e trabalho"
     },
     {
+      "id": "fiscal",
+      "nome": "Contas públicas"
+    },
+    {
       "id": "seguranca",
       "nome": "Segurança pública"
     },
@@ -347,10 +351,12 @@
       "casas": 1,
       "periodicidade": "anual",
       "fonte": "IBGE",
-      "fonte_detalhe": "PNAD Contínua, suplemento de Educação",
-      "url_fonte": "https://www.ibge.gov.br/estatisticas/sociais/educacao/17270-pnad-continua.html",
+      "fonte_detalhe": "PNAD Contínua Educação, SIDRA tabela 7113",
+      "url_fonte": "https://sidra.ibge.gov.br/tabela/7113",
       "coleta": {
-        "tipo": "manual"
+        "tipo": "sidra",
+        "agregado": 7113,
+        "variavel_nome": "Taxa"
       }
     },
     {
@@ -427,6 +433,78 @@
         "tipo": "manual"
       },
       "pendente": "Falta baixar as taxas de rendimento do Censo Escolar e registrar a série nacional."
+    },
+    {
+      "id": "divida_bruta",
+      "pilar": "fiscal",
+      "nome": "Dívida bruta do governo geral",
+      "unidade": "% do PIB",
+      "sufixo": " %",
+      "casas": 1,
+      "periodicidade": "mensal",
+      "fonte": "Banco Central do Brasil",
+      "fonte_detalhe": "Estatísticas fiscais do Banco Central, SGS série 13762 (metodologia a partir de 2008)",
+      "url_fonte": "https://dadosabertos.bcb.gov.br/dataset/13762",
+      "coleta": {
+        "tipo": "sgs",
+        "serie": 13762,
+        "inicio": "2000-01-01"
+      },
+      "nota": "Inclui governo federal, estados e municípios (INSS incluído)."
+    },
+    {
+      "id": "divida_liquida",
+      "pilar": "fiscal",
+      "nome": "Dívida líquida do setor público",
+      "unidade": "% do PIB",
+      "sufixo": " %",
+      "casas": 1,
+      "periodicidade": "mensal",
+      "fonte": "Banco Central do Brasil",
+      "fonte_detalhe": "Estatísticas fiscais do Banco Central, SGS série 4513 (setor público consolidado)",
+      "url_fonte": "https://dadosabertos.bcb.gov.br/dataset/4513",
+      "coleta": {
+        "tipo": "sgs",
+        "serie": 4513,
+        "inicio": "2000-01-01"
+      },
+      "nota": "Dívida bruta menos ativos do setor público."
+    },
+    {
+      "id": "resultado_primario",
+      "pilar": "fiscal",
+      "nome": "Resultado primário, acumulado em 12 meses",
+      "unidade": "% do PIB",
+      "sufixo": " %",
+      "casas": 1,
+      "periodicidade": "mensal",
+      "fonte": "Banco Central do Brasil",
+      "fonte_detalhe": "Estatísticas fiscais do Banco Central, SGS série 5793 (setor público consolidado)",
+      "url_fonte": "https://dadosabertos.bcb.gov.br/dataset/5793",
+      "coleta": {
+        "tipo": "sgs",
+        "serie": 5793,
+        "inicio": "2000-01-01"
+      },
+      "nota": "Valor positivo = superávit; negativo = déficit. Antes do pagamento de juros."
+    },
+    {
+      "id": "resultado_nominal",
+      "pilar": "fiscal",
+      "nome": "Resultado nominal (sem desvalorização cambial), 12 meses",
+      "unidade": "% do PIB",
+      "sufixo": " %",
+      "casas": 1,
+      "periodicidade": "mensal",
+      "fonte": "Banco Central do Brasil",
+      "fonte_detalhe": "Estatísticas fiscais do Banco Central, SGS série 5727 (setor público consolidado)",
+      "url_fonte": "https://dadosabertos.bcb.gov.br/dataset/5727",
+      "coleta": {
+        "tipo": "sgs",
+        "serie": 5727,
+        "inicio": "2000-01-01"
+      },
+      "nota": "Valor negativo = déficit. Inclui o pagamento de juros."
     }
   ]
 }
