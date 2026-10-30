@@ -1,5 +1,5 @@
 {
- "geradoEm": "2026-10-29T15:49:33Z",
+ "geradoEm": "2026-10-30T15:31:21Z",
  "pilares": [
   {
    "id": "economia",
@@ -2282,7 +2282,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-29",
+   "coletadoEm": "2026-10-30",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -4502,7 +4502,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-29",
+   "coletadoEm": "2026-10-30",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -4754,7 +4754,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-29",
+   "coletadoEm": "2026-10-30",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -5258,7 +5258,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-29",
+   "coletadoEm": "2026-10-30",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -5766,7 +5766,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-29",
+   "coletadoEm": "2026-10-30",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -7075,7 +7075,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-29",
+   "coletadoEm": "2026-10-30",
    "origem": "api"
   },
   {
@@ -8377,11 +8377,11 @@
     ],
     [
      "2026-10",
-     5.342
+     5.3744
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-29",
+   "coletadoEm": "2026-10-30",
    "origem": "api"
   },
   {
@@ -8406,7 +8406,7 @@
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-10-29",
+   "coletadoEm": "2026-10-30",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8438,7 +8438,7 @@
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-10-29",
+   "coletadoEm": "2026-10-30",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8466,7 +8466,7 @@
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-10-29",
+   "coletadoEm": "2026-10-30",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8550,7 +8550,7 @@
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-10-29",
+   "coletadoEm": "2026-10-30",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8616,7 +8616,7 @@
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-10-29",
+   "coletadoEm": "2026-10-30",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8648,7 +8648,7 @@
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-10-29",
+   "coletadoEm": "2026-10-30",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8680,7 +8680,7 @@
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-10-29",
+   "coletadoEm": "2026-10-30",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8736,7 +8736,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-29",
+   "coletadoEm": "2026-10-30",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -8787,7 +8787,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-29",
+   "coletadoEm": "2026-10-30",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -9820,10 +9820,14 @@
     [
      "2026-08",
      82.87
+    ],
+    [
+     "2026-09",
+     82.93
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-29",
+   "coletadoEm": "2026-10-30",
    "origem": "api"
   },
   {
@@ -11026,10 +11030,14 @@
     [
      "2026-08",
      69.27
+    ],
+    [
+     "2026-09",
+     69.98
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-29",
+   "coletadoEm": "2026-10-30",
    "origem": "api"
   },
   {
@@ -12188,10 +12196,14 @@
     [
      "2026-08",
      0.62
+    ],
+    [
+     "2026-09",
+     0.52
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-29",
+   "coletadoEm": "2026-10-30",
    "origem": "api"
   },
   {
@@ -13350,10 +13362,14 @@
     [
      "2026-08",
      9.48
+    ],
+    [
+     "2026-09",
+     9.51
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-29",
+   "coletadoEm": "2026-10-30",
    "origem": "api"
   }
  ]
