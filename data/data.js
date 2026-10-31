@@ -1,5 +1,5 @@
 window.PAINEL = {
- "geradoEm": "2026-10-30T15:31:21Z",
+ "geradoEm": "2026-10-31T14:59:18Z",
  "pilares": [
   {
    "id": "economia",
@@ -2282,7 +2282,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-30",
+   "coletadoEm": "2026-10-31",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -4502,7 +4502,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-30",
+   "coletadoEm": "2026-10-31",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -4754,7 +4754,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-30",
+   "coletadoEm": "2026-10-31",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -5258,7 +5258,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-30",
+   "coletadoEm": "2026-10-31",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -5766,7 +5766,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-30",
+   "coletadoEm": "2026-10-31",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -7075,7 +7075,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-30",
+   "coletadoEm": "2026-10-31",
    "origem": "api"
   },
   {
@@ -8377,11 +8377,11 @@ window.PAINEL = {
     ],
     [
      "2026-10",
-     5.3744
+     5.4212
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-30",
+   "coletadoEm": "2026-10-31",
    "origem": "api"
   },
   {
@@ -8406,7 +8406,7 @@ window.PAINEL = {
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-10-30",
+   "coletadoEm": "2026-10-31",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8438,7 +8438,7 @@ window.PAINEL = {
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-10-30",
+   "coletadoEm": "2026-10-31",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8466,7 +8466,7 @@ window.PAINEL = {
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-10-30",
+   "coletadoEm": "2026-10-31",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8550,7 +8550,7 @@ window.PAINEL = {
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-10-30",
+   "coletadoEm": "2026-10-31",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8616,7 +8616,7 @@ window.PAINEL = {
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-10-30",
+   "coletadoEm": "2026-10-31",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8648,7 +8648,7 @@ window.PAINEL = {
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-10-30",
+   "coletadoEm": "2026-10-31",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8680,7 +8680,7 @@ window.PAINEL = {
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-10-30",
+   "coletadoEm": "2026-10-31",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8736,7 +8736,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-30",
+   "coletadoEm": "2026-10-31",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -8787,7 +8787,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-30",
+   "coletadoEm": "2026-10-31",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -9827,7 +9827,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-30",
+   "coletadoEm": "2026-10-31",
    "origem": "api"
   },
   {
@@ -11037,7 +11037,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-30",
+   "coletadoEm": "2026-10-31",
    "origem": "api"
   },
   {
@@ -12203,7 +12203,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-30",
+   "coletadoEm": "2026-10-31",
    "origem": "api"
   },
   {
@@ -13369,7 +13369,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-30",
+   "coletadoEm": "2026-10-31",
    "origem": "api"
   }
  ]
