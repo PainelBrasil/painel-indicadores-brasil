@@ -1,5 +1,5 @@
 {
- "geradoEm": "2026-10-31T14:59:18Z",
+ "geradoEm": "2026-11-01T15:43:39Z",
  "pilares": [
   {
    "id": "economia",
@@ -2282,7 +2282,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-31",
+   "coletadoEm": "2026-11-01",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -4502,7 +4502,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-31",
+   "coletadoEm": "2026-11-01",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -4754,7 +4754,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-31",
+   "coletadoEm": "2026-11-01",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -5258,7 +5258,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-31",
+   "coletadoEm": "2026-11-01",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -5766,7 +5766,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-31",
+   "coletadoEm": "2026-11-01",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -7072,10 +7072,14 @@
     [
      "2026-10",
      13.75
+    ],
+    [
+     "2026-11",
+     13.75
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-31",
+   "coletadoEm": "2026-11-01",
    "origem": "api"
   },
   {
@@ -8381,7 +8385,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-31",
+   "coletadoEm": "2026-11-01",
    "origem": "api"
   },
   {
@@ -8406,7 +8410,7 @@
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-10-31",
+   "coletadoEm": "2026-11-01",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8438,7 +8442,7 @@
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-10-31",
+   "coletadoEm": "2026-11-01",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8466,7 +8470,7 @@
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-10-31",
+   "coletadoEm": "2026-11-01",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8550,7 +8554,7 @@
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-10-31",
+   "coletadoEm": "2026-11-01",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8616,7 +8620,7 @@
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-10-31",
+   "coletadoEm": "2026-11-01",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8648,7 +8652,7 @@
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-10-31",
+   "coletadoEm": "2026-11-01",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8680,7 +8684,7 @@
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-10-31",
+   "coletadoEm": "2026-11-01",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8736,7 +8740,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-31",
+   "coletadoEm": "2026-11-01",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -8787,7 +8791,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-31",
+   "coletadoEm": "2026-11-01",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -9827,7 +9831,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-31",
+   "coletadoEm": "2026-11-01",
    "origem": "api"
   },
   {
@@ -11037,7 +11041,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-31",
+   "coletadoEm": "2026-11-01",
    "origem": "api"
   },
   {
@@ -12203,7 +12207,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-31",
+   "coletadoEm": "2026-11-01",
    "origem": "api"
   },
   {
@@ -13369,7 +13373,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-10-31",
+   "coletadoEm": "2026-11-01",
    "origem": "api"
   }
  ]
