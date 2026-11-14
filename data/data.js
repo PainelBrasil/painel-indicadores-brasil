@@ -1,5 +1,5 @@
 window.PAINEL = {
- "geradoEm": "2026-11-13T16:55:19Z",
+ "geradoEm": "2026-11-14T15:30:05Z",
  "pilares": [
   {
    "id": "economia",
@@ -2286,7 +2286,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-13",
+   "coletadoEm": "2026-11-14",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -4510,7 +4510,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-13",
+   "coletadoEm": "2026-11-14",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -4762,7 +4762,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-13",
+   "coletadoEm": "2026-11-14",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -5266,7 +5266,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-13",
+   "coletadoEm": "2026-11-14",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -5774,7 +5774,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-13",
+   "coletadoEm": "2026-11-14",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -7087,7 +7087,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-13",
+   "coletadoEm": "2026-11-14",
    "origem": "api"
   },
   {
@@ -8397,7 +8397,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-13",
+   "coletadoEm": "2026-11-14",
    "origem": "api"
   },
   {
@@ -8422,7 +8422,7 @@ window.PAINEL = {
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-11-13",
+   "coletadoEm": "2026-11-14",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8454,7 +8454,7 @@ window.PAINEL = {
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-11-13",
+   "coletadoEm": "2026-11-14",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8482,7 +8482,7 @@ window.PAINEL = {
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-11-13",
+   "coletadoEm": "2026-11-14",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8566,7 +8566,7 @@ window.PAINEL = {
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-11-13",
+   "coletadoEm": "2026-11-14",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8632,7 +8632,7 @@ window.PAINEL = {
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-11-13",
+   "coletadoEm": "2026-11-14",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8664,7 +8664,7 @@ window.PAINEL = {
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-11-13",
+   "coletadoEm": "2026-11-14",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8696,7 +8696,7 @@ window.PAINEL = {
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-11-13",
+   "coletadoEm": "2026-11-14",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8752,7 +8752,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-13",
+   "coletadoEm": "2026-11-14",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -8803,7 +8803,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-13",
+   "coletadoEm": "2026-11-14",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -9783,7 +9783,7 @@ window.PAINEL = {
     ],
     [
      "2025-07",
-     77.18
+     77.17
     ],
     [
      "2025-08",
@@ -9807,11 +9807,11 @@ window.PAINEL = {
     ],
     [
      "2026-01",
-     78.7
+     78.69
     ],
     [
      "2026-02",
-     79.13
+     79.12
     ],
     [
      "2026-03",
@@ -9819,7 +9819,7 @@ window.PAINEL = {
     ],
     [
      "2026-04",
-     80.09
+     80.1
     ],
     [
      "2026-05",
@@ -9835,15 +9835,15 @@ window.PAINEL = {
     ],
     [
      "2026-08",
-     82.87
+     82.93
     ],
     [
      "2026-09",
-     82.93
+     82.95
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-13",
+   "coletadoEm": "2026-11-14",
    "origem": "api"
   },
   {
@@ -11005,7 +11005,7 @@ window.PAINEL = {
     ],
     [
      "2025-10",
-     64.68
+     64.69
     ],
     [
      "2025-11",
@@ -11033,7 +11033,7 @@ window.PAINEL = {
     ],
     [
      "2026-05",
-     67.88
+     67.89
     ],
     [
      "2026-06",
@@ -11045,15 +11045,15 @@ window.PAINEL = {
     ],
     [
      "2026-08",
-     69.27
+     69.32
     ],
     [
      "2026-09",
-     69.98
+     70.0
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-13",
+   "coletadoEm": "2026-11-14",
    "origem": "api"
   },
   {
@@ -12219,7 +12219,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-13",
+   "coletadoEm": "2026-11-14",
    "origem": "api"
   },
   {
@@ -13381,11 +13381,11 @@ window.PAINEL = {
     ],
     [
      "2026-09",
-     9.51
+     9.52
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-13",
+   "coletadoEm": "2026-11-14",
    "origem": "api"
   }
  ]
