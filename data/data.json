@@ -1,5 +1,5 @@
 {
- "geradoEm": "2026-11-15T16:02:45Z",
+ "geradoEm": "2026-11-16T19:11:59Z",
  "pilares": [
   {
    "id": "economia",
@@ -2286,10 +2286,10 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-15",
+   "coletadoEm": "2026-11-16",
    "origem": "api",
-   "nomeNaFonte": "Valor",
-   "unidadeNaFonte": "Unidade de Medida"
+   "nomeNaFonte": "IPCA - Variação mensal",
+   "unidadeNaFonte": ""
   },
   {
    "id": "ipca_12m",
@@ -4510,10 +4510,10 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-15",
+   "coletadoEm": "2026-11-16",
    "origem": "api",
-   "nomeNaFonte": "Valor",
-   "unidadeNaFonte": "Unidade de Medida"
+   "nomeNaFonte": "IPCA - Variação acumulada em 12 meses",
+   "unidadeNaFonte": ""
   },
   {
    "id": "desocupacao",
@@ -4762,10 +4762,10 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-15",
+   "coletadoEm": "2026-11-16",
    "origem": "api",
-   "nomeNaFonte": "Valor",
-   "unidadeNaFonte": "Unidade de Medida"
+   "nomeNaFonte": "Taxa de desocupação, na semana de referência, das pessoas de 14 anos ou mais de idade",
+   "unidadeNaFonte": "%"
   },
   {
    "id": "pib_trimestral",
@@ -5266,10 +5266,10 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-15",
+   "coletadoEm": "2026-11-16",
    "origem": "api",
-   "nomeNaFonte": "Valor",
-   "unidadeNaFonte": "Unidade de Medida"
+   "nomeNaFonte": "Taxa trimestre contra trimestre imediatamente anterior",
+   "unidadeNaFonte": ""
   },
   {
    "id": "pib_4tri",
@@ -5774,10 +5774,10 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-15",
+   "coletadoEm": "2026-11-16",
    "origem": "api",
-   "nomeNaFonte": "Valor",
-   "unidadeNaFonte": "Unidade de Medida"
+   "nomeNaFonte": "Taxa acumulada em quatro trimestres (em relação ao mesmo período do ano anterior)",
+   "unidadeNaFonte": "%"
   },
   {
    "id": "selic_meta",
@@ -7087,7 +7087,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-15",
+   "coletadoEm": "2026-11-16",
    "origem": "api"
   },
   {
@@ -8393,11 +8393,11 @@
     ],
     [
      "2026-11",
-     5.6518
+     5.7324
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-15",
+   "coletadoEm": "2026-11-16",
    "origem": "api"
   },
   {
@@ -8422,7 +8422,7 @@
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-11-15",
+   "coletadoEm": "2026-11-16",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8454,7 +8454,7 @@
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-11-15",
+   "coletadoEm": "2026-11-16",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8482,7 +8482,7 @@
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-11-15",
+   "coletadoEm": "2026-11-16",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8566,7 +8566,7 @@
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-11-15",
+   "coletadoEm": "2026-11-16",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8632,7 +8632,7 @@
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-11-15",
+   "coletadoEm": "2026-11-16",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8664,7 +8664,7 @@
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-11-15",
+   "coletadoEm": "2026-11-16",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8696,7 +8696,7 @@
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-11-15",
+   "coletadoEm": "2026-11-16",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8752,7 +8752,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-15",
+   "coletadoEm": "2026-11-16",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -8803,7 +8803,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-15",
+   "coletadoEm": "2026-11-16",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -9843,7 +9843,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-15",
+   "coletadoEm": "2026-11-16",
    "origem": "api"
   },
   {
@@ -11053,7 +11053,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-15",
+   "coletadoEm": "2026-11-16",
    "origem": "api"
   },
   {
@@ -12219,7 +12219,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-15",
+   "coletadoEm": "2026-11-16",
    "origem": "api"
   },
   {
@@ -13385,7 +13385,7 @@
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-15",
+   "coletadoEm": "2026-11-16",
    "origem": "api"
   }
  ]
