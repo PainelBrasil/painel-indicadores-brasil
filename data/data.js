@@ -1,5 +1,5 @@
 window.PAINEL = {
- "geradoEm": "2026-11-23T20:50:17Z",
+ "geradoEm": "2026-11-24T19:53:02Z",
  "pilares": [
   {
    "id": "economia",
@@ -2286,7 +2286,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-23",
+   "coletadoEm": "2026-11-24",
    "origem": "api",
    "nomeNaFonte": "IPCA - Variação mensal",
    "unidadeNaFonte": ""
@@ -4510,7 +4510,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-23",
+   "coletadoEm": "2026-11-24",
    "origem": "api",
    "nomeNaFonte": "IPCA - Variação acumulada em 12 meses",
    "unidadeNaFonte": ""
@@ -4766,7 +4766,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-23",
+   "coletadoEm": "2026-11-24",
    "origem": "api",
    "nomeNaFonte": "Taxa de desocupação, na semana de referência, das pessoas de 14 anos ou mais de idade",
    "unidadeNaFonte": "%"
@@ -5270,7 +5270,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-23",
+   "coletadoEm": "2026-11-24",
    "origem": "api",
    "nomeNaFonte": "Taxa trimestre contra trimestre imediatamente anterior",
    "unidadeNaFonte": ""
@@ -5778,7 +5778,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-23",
+   "coletadoEm": "2026-11-24",
    "origem": "api",
    "nomeNaFonte": "Taxa acumulada em quatro trimestres (em relação ao mesmo período do ano anterior)",
    "unidadeNaFonte": "%"
@@ -7090,10 +7090,9 @@ window.PAINEL = {
      13.75
     ]
    ],
-   "status": "erro",
-   "coletadoEm": "2026-11-22",
-   "origem": "api",
-   "erro": "falha ao acessar https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=01/01/2024&dataFinal=23/11/2026: HTTP Error 304: Not Modified"
+   "status": "api",
+   "coletadoEm": "2026-11-24",
+   "origem": "api"
   },
   {
    "id": "dolar_venda",
@@ -8398,11 +8397,11 @@ window.PAINEL = {
     ],
     [
      "2026-11",
-     5.9708
+     5.8573
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-23",
+   "coletadoEm": "2026-11-24",
    "origem": "api"
   },
   {
@@ -8427,7 +8426,7 @@ window.PAINEL = {
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-11-23",
+   "coletadoEm": "2026-11-24",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8459,7 +8458,7 @@ window.PAINEL = {
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-11-23",
+   "coletadoEm": "2026-11-24",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8487,7 +8486,7 @@ window.PAINEL = {
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-11-23",
+   "coletadoEm": "2026-11-24",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8571,7 +8570,7 @@ window.PAINEL = {
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-11-23",
+   "coletadoEm": "2026-11-24",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8637,7 +8636,7 @@ window.PAINEL = {
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-11-23",
+   "coletadoEm": "2026-11-24",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8669,7 +8668,7 @@ window.PAINEL = {
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-11-23",
+   "coletadoEm": "2026-11-24",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8701,7 +8700,7 @@ window.PAINEL = {
     ]
    ],
    "status": "manual_conferir",
-   "coletadoEm": "2026-11-23",
+   "coletadoEm": "2026-11-24",
    "origem": "manual",
    "fontesManuais": [
     {
@@ -8757,7 +8756,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-23",
+   "coletadoEm": "2026-11-24",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -8808,7 +8807,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-23",
+   "coletadoEm": "2026-11-24",
    "origem": "api",
    "nomeNaFonte": "Valor",
    "unidadeNaFonte": "Unidade de Medida"
@@ -9848,7 +9847,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-23",
+   "coletadoEm": "2026-11-24",
    "origem": "api"
   },
   {
@@ -11058,7 +11057,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-23",
+   "coletadoEm": "2026-11-24",
    "origem": "api"
   },
   {
@@ -12224,7 +12223,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-23",
+   "coletadoEm": "2026-11-24",
    "origem": "api"
   },
   {
@@ -13390,7 +13389,7 @@ window.PAINEL = {
     ]
    ],
    "status": "api",
-   "coletadoEm": "2026-11-23",
+   "coletadoEm": "2026-11-24",
    "origem": "api"
   }
  ]
